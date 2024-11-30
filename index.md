@@ -32,9 +32,9 @@ data:
         )"
   - name: math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/binomial.hpp
-      title: "Static Binomial (\u4E8C\u9805\u4FC2\u6570, constexpr)"
+      title: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
     - icon: ':heavy_check_mark:'
       path: math/ext_gcd.hpp
       title: "Extended Euclidean Algorithm (\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\
@@ -94,7 +94,7 @@ data:
       title: test/aoj/NTL_1_E.test.cpp
   - name: test/math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/binomial.test.cpp
       title: test/math/binomial.test.cpp
   - name: test/yosupo
