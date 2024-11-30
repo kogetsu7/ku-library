@@ -58,10 +58,10 @@ data:
   timestamp: '2024-09-11 11:30:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/static_range_sum.test.cpp
   - test/yosupo/static_range_min.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/static_range_sum.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
 documentation_of: data_structure/segment_tree.hpp
 layout: document
 redirect_from:
