@@ -1,12 +1,16 @@
 #pragma once
 
+/**
+ * @brief Binomial (二項係数)
+ */
+
 #include <array>
 #include <cassert>
 #include <vector>
 
 namespace Ku {
 /**
- * @brief Static Binomial (二項係数, constexpr)
+ * @brief 二項係数 (constexpr)
  */
 template <class T, int N> class StaticBinomial {
     static_assert(0 < N, "N must be positive.");
@@ -29,23 +33,29 @@ template <class T, int N> class StaticBinomial {
         }
     }
 
-    constexpr T p(const int a, const int b) const {
+    T p(const int a, const int b) const {
         if (b < 0 || a < b) {
             return T{0};
         }
+
+        assert(0 <= a);
+        assert(a <= n);
+        assert(a - b <= n);
 
         return fact[a] * ifact[a - b];
     }
 
-    constexpr T c(const int a, const int b) const {
+    T c(const int a, const int b) const {
         if (b < 0 || a < b) {
             return T{0};
         }
 
+        assert(b <= n);
+
         return p(a, b) * ifact[b];
     }
 
-    constexpr T h(const int a, const int b) const {
+    T h(const int a, const int b) const {
         if (a == 0 && b == 0) {
             return T{1};
         }
@@ -59,7 +69,7 @@ template <class T, int N> class StaticBinomial {
 };
 
 /**
- * @brief Dynamic Binomial (二項係数)
+ * @brief 二項係数
  */
 template <class T> class DynamicBinomial {
   private:
