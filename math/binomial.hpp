@@ -1,37 +1,124 @@
 #pragma once
 
+#include <array>
+#include <cassert>
+#include <vector>
+
+namespace Ku {
 /**
- * @brief Binomial (二項係数)
+ * @brief Static Binomial (二項係数, constexpr)
  */
-template <class T> class Binomial {
+template <class T, int N> class StaticBinomial {
+    static_assert(0 < N, "N must be positive.");
+
   private:
-    vector<T> fac, ifac;
+    std::array<T, N + 1> fact;
+    std::array<T, N + 1> ifact;
 
   public:
-    Binomial() {}
-    Binomial(int _n) : fac(_n + 1, 1), ifac(_n + 1, 1) {
-        for (int i = 0; i < _n; i++) {
-            fac[i + 1] = fac[i] * (i + 1);
+    constexpr StaticBinomial() {
+        fact[0] = T{1};
+        for (int i = 0; i < N; i++) {
+            fact[i + 1] = fact[i] * T{i + 1};
         }
-        ifac[_n] = 1 / fac[_n];
-        for (int i = _n; i > 0; i--) {
-            ifac[i - 1] = ifac[i] * i;
+
+        ifact[N] = T{1} / fact[N];
+
+        for (int i = N; i > 0; i--) {
+            ifact[i - 1] = ifact[i] * T{i};
         }
     }
 
-    T p(int a, int b) {
-        if (b < 0 || a < b) return 0;
-        return fac[a] * ifac[a - b];
+    constexpr T p(const int a, const int b) const {
+        if (b < 0 || a < b) {
+            return T{0};
+        }
+
+        return fact[a] * ifact[a - b];
     }
 
-    T c(int a, int b) {
-        if (b < 0 || a < b) return 0;
-        return p(a, b) * ifac[b];
+    constexpr T c(const int a, const int b) const {
+        if (b < 0 || a < b) {
+            return T{0};
+        }
+
+        return p(a, b) * ifact[b];
     }
 
-    T h(int a, int b) {
-        if (a == 0 && b == 0) return 1;
-        if (a <= 0 || b < 0) return 0;
+    constexpr T h(const int a, const int b) const {
+        if (a == 0 && b == 0) {
+            return T{1};
+        }
+
+        if (a <= 0 || b < 0) {
+            return T{0};
+        }
+
         return c(a + b - 1, b);
     }
 };
+
+/**
+ * @brief Dynamic Binomial (二項係数)
+ */
+template <class T> class DynamicBinomial {
+  private:
+    int n;
+    std::vector<T> fact;
+    std::vector<T> ifact;
+
+  public:
+    DynamicBinomial() : DynamicBinomial{0} {}
+    explicit DynamicBinomial(const int _n)
+        : n(_n), fact(_n + 1), ifact(_n + 1) {
+        assert(0 <= n);
+
+        fact[0] = T{1};
+        for (int i = 0; i < n; i++) {
+            fact[i + 1] = fact[i] * T{i + 1};
+        }
+
+        ifact[n] = T{1} / fact[n];
+
+        for (int i = n; i > 0; i--) {
+            ifact[i - 1] = ifact[i] * T{i};
+        }
+    }
+
+    T p(const int a, const int b) const {
+        if (b < 0 || a < b) {
+            return T{0};
+        }
+
+        assert(0 <= a);
+        assert(a <= n);
+        assert(a - b <= n);
+
+        return fact[a] * ifact[a - b];
+    }
+
+    T c(const int a, const int b) const {
+        if (b < 0 || a < b) {
+            return T{0};
+        }
+
+        assert(b <= n);
+
+        return p(a, b) * ifact[b];
+    }
+
+    T h(const int a, const int b) const {
+        if (a == 0 && b == 0) {
+            return T{1};
+        }
+
+        if (a <= 0 || b < 0) {
+            return T{0};
+        }
+
+        return c(a + b - 1, b);
+    }
+};
+
+template <class T> using Binomial = DynamicBinomial<T>;
+}  // namespace Ku
