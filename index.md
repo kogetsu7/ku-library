@@ -34,7 +34,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: math/binomial.hpp
-      title: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
+      title: "Static Binomial (\u4E8C\u9805\u4FC2\u6570, constexpr)"
     - icon: ':heavy_check_mark:'
       path: math/ext_gcd.hpp
       title: "Extended Euclidean Algorithm (\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\
@@ -92,11 +92,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_E.test.cpp
       title: test/aoj/NTL_1_E.test.cpp
-  - name: test/yosupo
+  - name: test/math
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/binomial_coefficient_prime_mod.test.cpp
-      title: test/yosupo/binomial_coefficient_prime_mod.test.cpp
+      path: test/math/binomial.test.cpp
+      title: test/math/binomial.test.cpp
+  - name: test/yosupo
+    pages:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
