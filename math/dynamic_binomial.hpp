@@ -1,75 +1,12 @@
 #pragma once
 
-/**
- * @brief Binomial (二項係数)
- */
-
 #include <array>
 #include <cassert>
 #include <vector>
 
 namespace Ku {
 /**
- * @brief 二項係数 (constexpr)
- */
-template <class T, int N> class StaticBinomial {
-    static_assert(0 < N, "N must be positive.");
-
-  private:
-    std::array<T, N + 1> fact;
-    std::array<T, N + 1> ifact;
-
-  public:
-    constexpr StaticBinomial() {
-        fact[0] = T{1};
-        for (int i = 0; i < N; i++) {
-            fact[i + 1] = fact[i] * T{i + 1};
-        }
-
-        ifact[N] = T{1} / fact[N];
-
-        for (int i = N; i > 0; i--) {
-            ifact[i - 1] = ifact[i] * T{i};
-        }
-    }
-
-    T p(const int a, const int b) const {
-        if (b < 0 || a < b) {
-            return T{0};
-        }
-
-        assert(0 <= a);
-        assert(a <= n);
-        assert(a - b <= n);
-
-        return fact[a] * ifact[a - b];
-    }
-
-    T c(const int a, const int b) const {
-        if (b < 0 || a < b) {
-            return T{0};
-        }
-
-        assert(b <= n);
-
-        return p(a, b) * ifact[b];
-    }
-
-    T h(const int a, const int b) const {
-        if (a == 0 && b == 0) {
-            return T{1};
-        }
-
-        if (a <= 0 || b < 0) {
-            return T{0};
-        }
-
-        return c(a + b - 1, b);
-    }
-};
-
-/**
- * @brief 二項係数
+ * @brief Dynamic Binomial (二項係数)
  */
 template <class T> class DynamicBinomial {
   private:
@@ -129,6 +66,4 @@ template <class T> class DynamicBinomial {
         return c(a + b - 1, b);
     }
 };
-
-template <class T> using Binomial = DynamicBinomial<T>;
 }  // namespace Ku
