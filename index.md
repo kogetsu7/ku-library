@@ -32,9 +32,9 @@ data:
         )"
   - name: math
     pages:
-    - icon: ':x:'
-      path: math/binomial.hpp
-      title: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
+    - icon: ':heavy_check_mark:'
+      path: math/dynamic_binomial.hpp
+      title: "Dynamic Binomial (\u4E8C\u9805\u4FC2\u6570)"
     - icon: ':heavy_check_mark:'
       path: math/ext_gcd.hpp
       title: "Extended Euclidean Algorithm (\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\
@@ -46,6 +46,9 @@ data:
       path: math/sieve_of_eratosthenes.hpp
       title: "Sieve of Eratosthenes (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\
         \u7BE9)"
+    - icon: ':warning:'
+      path: math/static_binomial.hpp
+      title: "Static Binomial (\u4E8C\u9805\u4FC2\u6570, constexpr)"
   - name: other
     pages:
     - icon: ':heavy_check_mark:'
@@ -94,9 +97,9 @@ data:
       title: test/aoj/NTL_1_E.test.cpp
   - name: test/math
     pages:
-    - icon: ':x:'
-      path: test/math/binomial.test.cpp
-      title: test/math/binomial.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/dynamic_binomial.test.cpp
+      title: test/math/dynamic_binomial.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'
