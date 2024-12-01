@@ -1,19 +1,18 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2441"
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
 
 #include "../../math/matrix.hpp"
 
 int main() {
-    vector<vector<int>> M(2, vector<int>(2));
+    std::vector M(2, std::vector<int>(2));
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
-            cin >> M[i][j];
+            std::cin >> M[i][j];
         }
     }
 
-    Matrix<int> mat1(M), mat2(2, 2);
+    Ku::Matrix<int> mat1(M), mat2(2);
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
             mat2.set(i, j, M[i][j]);
@@ -26,10 +25,13 @@ int main() {
 
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
-            if (j) cout << ' ';
-            cout << mat1.get(i, j);
+            if (0 < j) {
+                std::cout << " ";
+            }
+
+            std::cout << mat1.get(i, j);
         }
-        cout << endl;
+        std::cout << "\n";
     }
 
     return 0;

@@ -1,45 +1,68 @@
 #pragma once
 
+#include <algorithm>
+#include <cassert>
+#include <vector>
+
+namespace Ku {
 /**
  * @brief Matrix (行列)
  */
 template <class T> class Matrix {
   private:
-    vector<vector<T>> val;
+    size_t h;
+    size_t w;
+    std::vector<std::vector<T>> d;
 
   public:
-    Matrix() {}
-    Matrix(const size_t _size) : Matrix(_size, _size) {}
-    Matrix(const size_t _height, const size_t _width)
-        : val(_height, vector<T>(_width)) {}
-    Matrix(const vector<vector<T>> _val) : val(_val) {}
+    Matrix() : Matrix{0} {}
+    explicit Matrix(const size_t _h) : Matrix(_h, _h) {}
+    explicit Matrix(const size_t _h, const size_t _w)
+        : h(_h), w(_w), d(_h, std::vector<T>(_w, T{0})) {}
+    explicit Matrix(const std::vector<std::vector<T>>& _d)
+        : h(_d.size()), w(_d.empty() ? 0 : _d[0].size()), d(_d) {
+        assert(std::all_of(
+            d.begin(), d.end(),
+            [&](const std::vector<T>& r) -> bool { return r.size() == w; }));
+    }
 
-    size_t height() const { return val.size(); }
-    size_t width() const { return (height() ? val[0].size() : 0); }
+    size_t height() const { return h; }
+    size_t width() const { return w; }
 
-    T get(const int i, const int j) const { return val[i][j]; }
-    T set(const int i, const int j, const T& v) { return val[i][j] = v; }
+    T get(const size_t i, const size_t j) const {
+        assert(i < h);
+        assert(j < w);
+
+        return d[i][j];
+    }
+
+    T set(const size_t i, const size_t j, const T& v) {
+        assert(i < h);
+        assert(j < w);
+
+        return d[i][j] = v;
+    }
 
     static Matrix identity(const size_t s) {
-        Matrix res(s, s);
-        for (int i = 0; i < int(s); i++) {
+        Matrix res{s};
+        for (size_t i = 0; i < s; i++) {
             res.set(i, i, T(1));
         }
 
         return res;
     }
 
-    friend bool operator==(const Matrix<T>& lhs, const Matrix<T>& rhs) {
-        return lhs.val == rhs.val;
+    friend bool operator==(const Matrix& lhs, const Matrix& rhs) {
+        return lhs.d == rhs.d;
     }
 
-    friend Matrix<T> operator*(const Matrix<T>& lhs, const Matrix<T>& rhs) {
+    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {
         assert(lhs.width() == rhs.height());
 
-        Matrix<T> res(lhs.height(), rhs.width());
-        for (int i = 0; i < int(lhs.height()); i++) {
-            for (int j = 0; j < int(rhs.width()); j++) {
-                for (int k = 0; k < int(lhs.width()); k++) {
+        Matrix res(lhs.height(), rhs.width());
+        for (size_t i = 0; i < lhs.height(); i++) {
+            for (size_t j = 0; j < rhs.width(); j++) {
+                for (size_t k = 0; k < lhs.width(); k++) {
                     res.set(i, j,
                             res.get(i, j) + lhs.get(i, k) * rhs.get(k, j));
                 }
@@ -49,25 +72,28 @@ template <class T> class Matrix {
         return res;
     }
 
-    Matrix<T>& operator*=(const Matrix<T>& rhs) {
-        assert(height() == width() && rhs.height() == rhs.width() &&
-               height() == rhs.height());
+    Matrix& operator*=(const Matrix& rhs) {
+        assert(height() == width());
+        assert(rhs.height() == rhs.width());
+        assert(height() == rhs.height());
 
-        return *this = (*this) * rhs;
+        return *this = *this * rhs;
     }
 
-    Matrix<T> pow(const long long n) const {
+    Matrix pow(unsigned long long y) const {
         assert(height() == width());
 
-        long long m = n;
-        Matrix<T> res = identity(height());
-        Matrix<T> x(*this);
-        while (m) {
-            if (m & 1) res *= x;
+        Matrix res{identity(height())}, x{*this};
+        while (0 < y) {
+            if (y & 1U) {
+                res *= x;
+            }
+
             x *= x;
-            m >>= 1;
+            y >>= 1U;
         }
 
         return res;
     }
 };
+};  // namespace Ku
