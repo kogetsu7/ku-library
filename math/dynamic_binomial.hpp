@@ -18,7 +18,7 @@ template <class T> class DynamicBinomial {
     DynamicBinomial() : DynamicBinomial{0U} {}
     explicit DynamicBinomial(const unsigned _n)
         : n(_n), fact(_n + 1), ifact(_n + 1) {
-        fact[0] = T{1};
+        fact[0] = T{1U};
         for (unsigned i = 0; i < n; i++) {
             fact[i + 1] = fact[i] * T{i + 1};
         }
