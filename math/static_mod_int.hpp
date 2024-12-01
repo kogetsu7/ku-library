@@ -19,6 +19,16 @@ template <unsigned M> class StaticModInt {
 
     constexpr unsigned val() const { return v; }
 
+    constexpr friend bool operator==(const StaticModInt& lhs,
+                                     const StaticModInt& rhs) {
+        return lhs.v == rhs.v;
+    }
+
+    constexpr friend bool operator!=(const StaticModInt& lhs,
+                                     const StaticModInt& rhs) {
+        return lhs.v != rhs.v;
+    }
+
     constexpr StaticModInt& operator+=(const StaticModInt& rhs) {
         v += rhs.val();
         if (M <= v) {
