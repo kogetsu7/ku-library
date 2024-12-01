@@ -22,9 +22,9 @@ data:
     \ fact;\n    std::vector<T> ifact;\n\n  public:\n    Binomial() : Binomial(0)\
     \ {}\n    explicit Binomial(const size_t _n) : n(_n), fact(_n + 1), ifact(_n +\
     \ 1) {\n        fact[0] = T(1);\n        for (size_t i = 0; i < n; i++) {\n  \
-    \          fact[i + 1] = fact[i] * T{i + 1};\n        }\n\n        ifact[n] =\
+    \          fact[i + 1] = fact[i] * T(i + 1);\n        }\n\n        ifact[n] =\
     \ T(1) / fact[n];\n\n        for (size_t i = n; i > 0; i--) {\n            ifact[i\
-    \ - 1] = ifact[i] * T{i};\n        }\n    }\n\n    T p(const int a, const int\
+    \ - 1] = ifact[i] * T(i);\n        }\n    }\n\n    T p(const int a, const int\
     \ b) const {\n        if (b < 0 || a < b) {\n            return T(0);\n      \
     \  }\n\n        assert(0 <= a);\n        assert(a <= static_cast<int>(n));\n \
     \       assert(a - b <= static_cast<int>(n));\n\n        return fact[a] * ifact[a\
@@ -50,7 +50,7 @@ data:
   isVerificationFile: true
   path: test/math/binomial.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 15:54:29+09:00'
+  timestamp: '2024-12-01 16:56:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/binomial.test.cpp
