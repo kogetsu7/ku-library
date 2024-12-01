@@ -19,13 +19,13 @@ template <class T> class Binomial {
     explicit Binomial(const size_t _n) : n(_n), fact(_n + 1), ifact(_n + 1) {
         fact[0] = T(1);
         for (size_t i = 0; i < n; i++) {
-            fact[i + 1] = fact[i] * T{i + 1};
+            fact[i + 1] = fact[i] * T(i + 1);
         }
 
         ifact[n] = T(1) / fact[n];
 
         for (size_t i = n; i > 0; i--) {
-            ifact[i - 1] = ifact[i] * T{i};
+            ifact[i - 1] = ifact[i] * T(i);
         }
     }
 
