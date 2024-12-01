@@ -1,34 +1,40 @@
 #pragma once
 
+#include <algorithm>
+#include <iterator>
+
+namespace Ku {
 /**
  * @brief Next Combination
  */
-template <class T>
-bool next_combination(const T& begin, const T& end, const int k) {
-    const T& sub = begin + k;
+template <class I>
+bool NextCombination(const I& begin, const I& end, const int k) {
+    const I sub = std::next(begin, k);
 
     if (begin == end || begin == sub || end == sub) {
         return false;
     }
 
-    T src = sub;
+    I src = sub;
     while (begin != src) {
-        src--;
+        src = std::prev(src, 1);
 
-        if (*src < *(end - 1)) {
-            T dest = sub;
-            while (*dest <= *src) dest++;
+        if (*src < *std::prev(end, 1)) {
+            I dst = sub;
+            while (*dst <= *src) {
+                dst = std::next(dst, 1);
+            }
 
-            iter_swap(src, dest);
-
-            rotate(src + 1, dest + 1, end);
-            rotate(sub, sub + (end - dest) - 1, end);
+            std::iter_swap(src, dst);
+            std::rotate(std::next(src, 1), std::next(dst, 1), end);
+            std::rotate(sub, std::next(sub, std::distance(dst, end) - 1), end);
 
             return true;
         }
     }
 
-    rotate(begin, sub, end);
+    std::rotate(begin, sub, end);
 
     return false;
 }
+};  // namespace Ku

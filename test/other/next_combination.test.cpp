@@ -1,20 +1,21 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2561"
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include <numeric>
+#include <vector>
 
 #include "../../other/next_combination.hpp"
 
 int main() {
     int N, K;
-    cin >> N >> K;
-    vector<long long> A(N);
+    std::cin >> N >> K;
+    std::vector<long long> A(N);
     for (int i = 0; i < N; i++) {
-        cin >> A[i];
+        std::cin >> A[i];
     }
 
-    vector<int> id(N);
-    iota(id.begin(), id.end(), 0);
+    std::vector<int> id(N);
+    std::iota(id.begin(), id.end(), 0);
 
     int ans = 0;
     do {
@@ -27,9 +28,9 @@ int main() {
         if (s2 <= s1) {
             ans = (ans + 1) % 998;
         }
-    } while (next_combination(id.begin(), id.end(), K));
+    } while (Ku::NextCombination(id.begin(), id.end(), K));
 
-    cout << ans << endl;
+    std::cout << ans << "\n";
 
     return 0;
 }
