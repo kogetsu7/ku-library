@@ -15,8 +15,8 @@ class PrimeSieve {
     std::vector<unsigned> p;
 
   public:
-    PrimeSieve() : PrimeSieve{0} {}
-    PrimeSieve(const size_t _n) : d(_n + 1), p{} {
+    PrimeSieve() : PrimeSieve(0) {}
+    PrimeSieve(const size_t _n) : d(_n + 1), p() {
         for (unsigned i = 2; i <= static_cast<unsigned>(_n); i++) {
             if (d[i] != 0) {
                 continue;

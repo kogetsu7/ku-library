@@ -9,7 +9,7 @@ template <unsigned M> class StaticModInt {
     unsigned v;
 
   public:
-    constexpr StaticModInt() : StaticModInt{0U} {}
+    constexpr StaticModInt() : StaticModInt(0) {}
     constexpr explicit StaticModInt(const unsigned long long _v)
         : v(static_cast<unsigned>(_v % M)) {}
 
