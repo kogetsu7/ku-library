@@ -48,22 +48,22 @@ template <unsigned M> class StaticModInt {
 
     constexpr friend StaticModInt operator+(const StaticModInt& lhs,
                                             const StaticModInt& rhs) {
-        return StaticModInt{lhs} += rhs;
+        return StaticModInt(lhs) += rhs;
     }
 
     constexpr friend StaticModInt operator-(const StaticModInt& lhs,
                                             const StaticModInt& rhs) {
-        return StaticModInt{lhs} -= rhs;
+        return StaticModInt(lhs) -= rhs;
     }
 
     constexpr friend StaticModInt operator*(const StaticModInt& lhs,
                                             const StaticModInt& rhs) {
-        return StaticModInt{lhs} *= rhs;
+        return StaticModInt(lhs) *= rhs;
     }
 
     constexpr friend StaticModInt operator/(const StaticModInt& lhs,
                                             const StaticModInt& rhs) {
-        return StaticModInt{lhs} /= rhs;
+        return StaticModInt(lhs) /= rhs;
     }
 
     constexpr StaticModInt pow(unsigned y) const {
