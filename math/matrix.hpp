@@ -15,10 +15,10 @@ template <class T> class Matrix {
     std::vector<std::vector<T>> d;
 
   public:
-    Matrix() : Matrix{0} {}
+    Matrix() : Matrix(0) {}
     explicit Matrix(const size_t _h) : Matrix(_h, _h) {}
     explicit Matrix(const size_t _h, const size_t _w)
-        : h(_h), w(_w), d(_h, std::vector<T>(_w, T{0})) {}
+        : h(_h), w(_w), d(_h, std::vector<T>(_w, T(0))) {}
     explicit Matrix(const std::vector<std::vector<T>>& _d)
         : h(_d.size()), w(_d.empty() ? 0 : _d[0].size()), d(_d) {
         assert(std::all_of(
