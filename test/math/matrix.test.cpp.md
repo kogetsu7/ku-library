@@ -19,9 +19,9 @@ data:
     #include <cassert>\n#include <vector>\n\nnamespace Ku {\n/**\n * @brief Matrix\
     \ (\u884C\u5217)\n */\ntemplate <class T> class Matrix {\n  private:\n    size_t\
     \ h;\n    size_t w;\n    std::vector<std::vector<T>> d;\n\n  public:\n    Matrix()\
-    \ : Matrix{0} {}\n    explicit Matrix(const size_t _h) : Matrix(_h, _h) {}\n \
+    \ : Matrix(0) {}\n    explicit Matrix(const size_t _h) : Matrix(_h, _h) {}\n \
     \   explicit Matrix(const size_t _h, const size_t _w)\n        : h(_h), w(_w),\
-    \ d(_h, std::vector<T>(_w, T{0})) {}\n    explicit Matrix(const std::vector<std::vector<T>>&\
+    \ d(_h, std::vector<T>(_w, T(0))) {}\n    explicit Matrix(const std::vector<std::vector<T>>&\
     \ _d)\n        : h(_d.size()), w(_d.empty() ? 0 : _d[0].size()), d(_d) {\n   \
     \     assert(std::all_of(\n            d.begin(), d.end(),\n            [&](const\
     \ std::vector<T>& r) -> bool { return r.size() == w; }));\n    }\n\n    size_t\
@@ -71,7 +71,7 @@ data:
   isVerificationFile: true
   path: test/math/matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 11:41:15+09:00'
+  timestamp: '2024-12-01 13:34:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/matrix.test.cpp

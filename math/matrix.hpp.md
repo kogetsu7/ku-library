@@ -15,10 +15,10 @@ data:
   bundledCode: "#line 2 \"math/matrix.hpp\"\n\n#include <algorithm>\n#include <cassert>\n\
     #include <vector>\n\nnamespace Ku {\n/**\n * @brief Matrix (\u884C\u5217)\n */\n\
     template <class T> class Matrix {\n  private:\n    size_t h;\n    size_t w;\n\
-    \    std::vector<std::vector<T>> d;\n\n  public:\n    Matrix() : Matrix{0} {}\n\
+    \    std::vector<std::vector<T>> d;\n\n  public:\n    Matrix() : Matrix(0) {}\n\
     \    explicit Matrix(const size_t _h) : Matrix(_h, _h) {}\n    explicit Matrix(const\
     \ size_t _h, const size_t _w)\n        : h(_h), w(_w), d(_h, std::vector<T>(_w,\
-    \ T{0})) {}\n    explicit Matrix(const std::vector<std::vector<T>>& _d)\n    \
+    \ T(0))) {}\n    explicit Matrix(const std::vector<std::vector<T>>& _d)\n    \
     \    : h(_d.size()), w(_d.empty() ? 0 : _d[0].size()), d(_d) {\n        assert(std::all_of(\n\
     \            d.begin(), d.end(),\n            [&](const std::vector<T>& r) ->\
     \ bool { return r.size() == w; }));\n    }\n\n    size_t height() const { return\
@@ -47,9 +47,9 @@ data:
   code: "#pragma once\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
     \nnamespace Ku {\n/**\n * @brief Matrix (\u884C\u5217)\n */\ntemplate <class T>\
     \ class Matrix {\n  private:\n    size_t h;\n    size_t w;\n    std::vector<std::vector<T>>\
-    \ d;\n\n  public:\n    Matrix() : Matrix{0} {}\n    explicit Matrix(const size_t\
+    \ d;\n\n  public:\n    Matrix() : Matrix(0) {}\n    explicit Matrix(const size_t\
     \ _h) : Matrix(_h, _h) {}\n    explicit Matrix(const size_t _h, const size_t _w)\n\
-    \        : h(_h), w(_w), d(_h, std::vector<T>(_w, T{0})) {}\n    explicit Matrix(const\
+    \        : h(_h), w(_w), d(_h, std::vector<T>(_w, T(0))) {}\n    explicit Matrix(const\
     \ std::vector<std::vector<T>>& _d)\n        : h(_d.size()), w(_d.empty() ? 0 :\
     \ _d[0].size()), d(_d) {\n        assert(std::all_of(\n            d.begin(),\
     \ d.end(),\n            [&](const std::vector<T>& r) -> bool { return r.size()\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: math/matrix.hpp
   requiredBy: []
-  timestamp: '2024-12-01 11:41:15+09:00'
+  timestamp: '2024-12-01 13:34:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/matrix.test.cpp

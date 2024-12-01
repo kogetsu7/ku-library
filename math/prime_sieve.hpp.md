@@ -17,8 +17,8 @@ data:
     #include <utility>\n#include <vector>\n\nnamespace Ku {\n/**\n * @brief Prime\
     \ Sieve (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n */\nclass PrimeSieve\
     \ {\n  private:\n    std::vector<unsigned> d;\n    std::vector<unsigned> p;\n\n\
-    \  public:\n    PrimeSieve() : PrimeSieve{0} {}\n    PrimeSieve(const size_t _n)\
-    \ : d(_n + 1), p{} {\n        for (unsigned i = 2; i <= static_cast<unsigned>(_n);\
+    \  public:\n    PrimeSieve() : PrimeSieve(0) {}\n    PrimeSieve(const size_t _n)\
+    \ : d(_n + 1), p() {\n        for (unsigned i = 2; i <= static_cast<unsigned>(_n);\
     \ i++) {\n            if (d[i] != 0) {\n                continue;\n          \
     \  }\n\n            d[i] = i;\n            p.push_back(i);\n\n            for\
     \ (unsigned long long j = static_cast<unsigned long long>(i) * i;\n          \
@@ -47,7 +47,7 @@ data:
     #include <vector>\n\nnamespace Ku {\n/**\n * @brief Prime Sieve (\u30A8\u30E9\u30C8\
     \u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n */\nclass PrimeSieve {\n  private:\n \
     \   std::vector<unsigned> d;\n    std::vector<unsigned> p;\n\n  public:\n    PrimeSieve()\
-    \ : PrimeSieve{0} {}\n    PrimeSieve(const size_t _n) : d(_n + 1), p{} {\n   \
+    \ : PrimeSieve(0) {}\n    PrimeSieve(const size_t _n) : d(_n + 1), p() {\n   \
     \     for (unsigned i = 2; i <= static_cast<unsigned>(_n); i++) {\n          \
     \  if (d[i] != 0) {\n                continue;\n            }\n\n            d[i]\
     \ = i;\n            p.push_back(i);\n\n            for (unsigned long long j =\
@@ -76,7 +76,7 @@ data:
   isVerificationFile: false
   path: math/prime_sieve.hpp
   requiredBy: []
-  timestamp: '2024-12-01 13:22:08+09:00'
+  timestamp: '2024-12-01 13:32:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/prime_sieve.test.cpp

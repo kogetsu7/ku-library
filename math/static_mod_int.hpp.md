@@ -2,19 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/math/static_binomial.test.cpp
-    title: test/math/static_binomial.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: Static Mod Int
     links: []
   bundledCode: "#line 2 \"math/static_mod_int.hpp\"\n\nnamespace Ku {\n/**\n * @brief\
     \ Static Mod Int\n */\ntemplate <unsigned M> class StaticModInt {\n  private:\n\
-    \    unsigned v;\n\n  public:\n    constexpr StaticModInt() : StaticModInt{0U}\
+    \    unsigned v;\n\n  public:\n    constexpr StaticModInt() : StaticModInt(0)\
     \ {}\n    constexpr explicit StaticModInt(const unsigned long long _v)\n     \
     \   : v(static_cast<unsigned>(_v % M)) {}\n\n    constexpr static unsigned mod()\
     \ { return M; }\n\n    constexpr unsigned val() const { return v; }\n\n    constexpr\
@@ -43,7 +40,7 @@ data:
     \ const { return pow(M - 2); }\n};\n};  // namespace Ku\n"
   code: "#pragma once\n\nnamespace Ku {\n/**\n * @brief Static Mod Int\n */\ntemplate\
     \ <unsigned M> class StaticModInt {\n  private:\n    unsigned v;\n\n  public:\n\
-    \    constexpr StaticModInt() : StaticModInt{0U} {}\n    constexpr explicit StaticModInt(const\
+    \    constexpr StaticModInt() : StaticModInt(0) {}\n    constexpr explicit StaticModInt(const\
     \ unsigned long long _v)\n        : v(static_cast<unsigned>(_v % M)) {}\n\n  \
     \  constexpr static unsigned mod() { return M; }\n\n    constexpr unsigned val()\
     \ const { return v; }\n\n    constexpr StaticModInt& operator+=(const StaticModInt&\
@@ -74,10 +71,9 @@ data:
   isVerificationFile: false
   path: math/static_mod_int.hpp
   requiredBy: []
-  timestamp: '2024-12-01 10:43:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/math/static_binomial.test.cpp
+  timestamp: '2024-12-01 13:32:40+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math/static_mod_int.hpp
 layout: document
 redirect_from:
