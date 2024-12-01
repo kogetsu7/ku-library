@@ -17,12 +17,12 @@ bool NextCombination(const I& begin, const I& end, const int k) {
 
     I src = sub;
     while (begin != src) {
-        src = std::prev(src, 1);
+        std::advance(src, -1);
 
         if (*src < *std::prev(end, 1)) {
             I dst = sub;
             while (*dst <= *src) {
-                dst = std::next(dst, 1);
+                std::advance(dst, 1);
             }
 
             std::iter_swap(src, dst);
