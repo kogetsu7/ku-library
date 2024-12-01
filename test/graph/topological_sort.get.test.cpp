@@ -58,4 +58,6 @@ int main() {
     }
 
     std::cout << dp[N - 1] << ' ' << cnt << '/' << N << "\n";
+
+    return 0;
 }
