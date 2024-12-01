@@ -19,27 +19,26 @@ data:
     #include <iostream>\n\n#include <atcoder/modint>\n\n#line 2 \"math/dynamic_binomial.hpp\"\
     \n\n#include <array>\n#include <cassert>\n#include <vector>\n\nnamespace Ku {\n\
     /**\n * @brief Dynamic Binomial (\u4E8C\u9805\u4FC2\u6570)\n */\ntemplate <class\
-    \ T> class DynamicBinomial {\n  private:\n    unsigned n;\n    std::vector<T>\
-    \ fact;\n    std::vector<T> ifact;\n\n  public:\n    DynamicBinomial() : DynamicBinomial{0U}\
-    \ {}\n    explicit DynamicBinomial(const unsigned _n)\n        : n(_n), fact(_n\
-    \ + 1), ifact(_n + 1) {\n        fact[0] = T{1U};\n        for (unsigned i = 0;\
-    \ i < n; i++) {\n            fact[i + 1] = fact[i] * T{i + 1};\n        }\n\n\
-    \        ifact[n] = T{1U} / fact[n];\n\n        for (unsigned i = n; i > 0; i--)\
-    \ {\n            ifact[i - 1] = ifact[i] * T{i};\n        }\n    }\n\n    T p(const\
+    \ T> class DynamicBinomial {\n  private:\n    size_t n;\n    std::vector<T> fact;\n\
+    \    std::vector<T> ifact;\n\n  public:\n    DynamicBinomial() : DynamicBinomial{0U}\
+    \ {}\n    explicit DynamicBinomial(const size_t _n)\n        : n(_n), fact(_n\
+    \ + 1), ifact(_n + 1) {\n        fact[0] = T{1};\n        for (size_t i = 0; i\
+    \ < n; i++) {\n            fact[i + 1] = fact[i] * T{i + 1};\n        }\n\n  \
+    \      ifact[n] = T{1} / fact[n];\n\n        for (size_t i = n; i > 0; i--) {\n\
+    \            ifact[i - 1] = ifact[i] * T{i};\n        }\n    }\n\n    T p(const\
     \ int a, const int b) const {\n        if (b < 0 || a < b) {\n            return\
-    \ T{0U};\n        }\n\n        assert(0 <= a);\n        assert(a <= static_cast<int>(n));\n\
+    \ T{0};\n        }\n\n        assert(0 <= a);\n        assert(a <= static_cast<int>(n));\n\
     \        assert(a - b <= static_cast<int>(n));\n\n        return fact[a] * ifact[a\
     \ - b];\n    }\n\n    T c(const int a, const int b) const {\n        if (b < 0\
-    \ || a < b) {\n            return T{0U};\n        }\n\n        assert(b <= static_cast<int>(n));\n\
+    \ || a < b) {\n            return T{0};\n        }\n\n        assert(b <= static_cast<int>(n));\n\
     \n        return p(a, b) * ifact[b];\n    }\n\n    T h(const int a, const int\
-    \ b) const {\n        if (a == 0 && b == 0) {\n            return T{1U};\n   \
-    \     }\n\n        if (a <= 0 || b < 0) {\n            return T{0U};\n       \
-    \ }\n\n        return c(a + b - 1, b);\n    }\n};\n}  // namespace Ku\n#line 9\
-    \ \"test/math/dynamic_binomial.test.cpp\"\n\nint main() {\n    int T, M;\n   \
-    \ std::cin >> T >> M;\n\n    atcoder::modint::set_mod(M);\n\n    Ku::DynamicBinomial<atcoder::modint>\
-    \ bin(std::min(M - 1, 10000000));\n\n    for (; T--;) {\n        int n, k;\n \
-    \       std::cin >> n >> k;\n\n        std::cout << bin.c(n, k).val() << \"\\\
-    n\";\n    }\n\n    return 0;\n}\n"
+    \ b) const {\n        if (a == 0 && b == 0) {\n            return T{1};\n    \
+    \    }\n\n        if (a <= 0 || b < 0) {\n            return T{0};\n        }\n\
+    \n        return c(a + b - 1, b);\n    }\n};\n}  // namespace Ku\n#line 9 \"test/math/dynamic_binomial.test.cpp\"\
+    \n\nint main() {\n    int T, M;\n    std::cin >> T >> M;\n\n    atcoder::modint::set_mod(M);\n\
+    \n    Ku::DynamicBinomial<atcoder::modint> bin(std::min(M - 1, 10000000));\n\n\
+    \    for (; T--;) {\n        int n, k;\n        std::cin >> n >> k;\n\n      \
+    \  std::cout << bin.c(n, k).val() << \"\\n\";\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
     \n\n#include <algorithm>\n#include <iostream>\n\n#include <atcoder/modint>\n\n\
     #include \"../../math/dynamic_binomial.hpp\"\n\nint main() {\n    int T, M;\n\
@@ -52,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/math/dynamic_binomial.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 10:02:58+09:00'
+  timestamp: '2024-12-01 11:11:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/dynamic_binomial.test.cpp

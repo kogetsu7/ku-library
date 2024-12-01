@@ -104,6 +104,9 @@ data:
       path: test/math/dynamic_binomial.test.cpp
       title: test/math/dynamic_binomial.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/math/matrix.test.cpp
+      title: test/math/matrix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/math/static_binomial.test.cpp
       title: test/math/static_binomial.test.cpp
   - name: test/yosupo
@@ -134,9 +137,6 @@ data:
       title: test/yosupo/zalgorithm.test.cpp
   - name: test/yukicoder
     pages:
-    - icon: ':heavy_check_mark:'
-      path: test/yukicoder/2441.test.cpp
-      title: test/yukicoder/2441.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2561.test.cpp
       title: test/yukicoder/2561.test.cpp
