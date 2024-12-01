@@ -1,35 +1,38 @@
-#define PROBLEM "https://yukicoder.me/problems/no/2441"
+#define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix"
 
 #include <iostream>
+#include <vector>
 
 #include "../../math/matrix.hpp"
+#include "../../math/static_mod_int.hpp"
 
 int main() {
-    std::vector M(2, std::vector<int>(2));
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            std::cin >> M[i][j];
+    int N;
+    long long K;
+    std::cin >> N >> K;
+    std::vector A(N, std::vector<Ku::StaticModInt<998244353>>(N));
+    Ku::Matrix<Ku::StaticModInt<998244353>> mat(N);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            unsigned a;
+            std::cin >> a;
+            A[i][j] = Ku::StaticModInt<998244353>(a);
+            mat.set(i, j, A[i][j]);
         }
     }
 
-    Ku::Matrix<int> mat1(M), mat2(2);
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            mat2.set(i, j, M[i][j]);
-        }
-    }
+    Ku::Matrix<Ku::StaticModInt<998244353>> mat2(A);
+    assert(mat == mat2);
 
-    assert(mat1 == mat2);
+    mat = mat.pow(K);
 
-    mat1 = mat1.pow(3);
-
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
             if (0 < j) {
                 std::cout << " ";
             }
 
-            std::cout << mat1.get(i, j);
+            std::cout << mat.get(i, j).val();
         }
         std::cout << "\n";
     }
