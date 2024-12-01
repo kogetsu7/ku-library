@@ -58,8 +58,16 @@ data:
   - test/math/binomial.test.cpp
 documentation_of: math/binomial.hpp
 layout: document
-titile: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
+title: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
 ---
 
 ## 概要
-二項係数を前計算する
+二項係数を前計算します
+
+
+# コンストラクタ
+- `Binomial<T>(unsigned n)`
+  - サイズnのテーブルを作成して前計算します
+
+## 計算量
+$O(n+\log{MOD})$

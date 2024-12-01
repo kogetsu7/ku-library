@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/binomial.hpp
-    title: math/binomial.hpp
+    title: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

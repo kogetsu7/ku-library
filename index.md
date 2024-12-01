@@ -34,7 +34,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: math/binomial.hpp
-      title: math/binomial.hpp
+      title: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
     - icon: ':heavy_check_mark:'
       path: math/extended_gcd.hpp
       title: "Extended Euclidean Algorithm (\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\
