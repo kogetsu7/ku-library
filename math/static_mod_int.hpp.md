@@ -10,36 +10,8 @@ data:
     document_title: Static Mod Int
     links: []
   bundledCode: "#line 2 \"math/static_mod_int.hpp\"\n\nnamespace Ku {\n/**\n * @brief\
-    \ Static Mod Int\n */\ntemplate <unsigned M> class StaticModInt {\n  private:\n\
-    \    unsigned v;\n\n  public:\n    constexpr StaticModInt() : StaticModInt(0)\
-    \ {}\n    constexpr explicit StaticModInt(const unsigned long long _v)\n     \
-    \   : v(static_cast<unsigned>(_v % M)) {}\n\n    constexpr static unsigned mod()\
-    \ { return M; }\n\n    constexpr unsigned val() const { return v; }\n\n    constexpr\
-    \ StaticModInt& operator+=(const StaticModInt& rhs) {\n        v += rhs.val();\n\
-    \        if (M <= v) {\n            v -= M;\n        }\n\n        return *this;\n\
-    \    }\n\n    constexpr StaticModInt& operator-=(const StaticModInt& rhs) {\n\
-    \        if (v < rhs.val()) {\n            v += M;\n        }\n        v -= rhs.val();\n\
-    \n        return *this;\n    }\n\n    constexpr StaticModInt& operator*=(const\
-    \ StaticModInt& rhs) {\n        v = static_cast<unsigned>(\n            (static_cast<unsigned\
-    \ long long>(v) * rhs.val()) % M);\n\n        return *this;\n    }\n\n    constexpr\
-    \ StaticModInt& operator/=(const StaticModInt& rhs) {\n        return *this *=\
-    \ rhs.inv();\n    }\n\n    constexpr friend StaticModInt operator+(const StaticModInt&\
-    \ lhs,\n                                            const StaticModInt& rhs) {\n\
-    \        return StaticModInt{lhs} += rhs;\n    }\n\n    constexpr friend StaticModInt\
-    \ operator-(const StaticModInt& lhs,\n                                       \
-    \     const StaticModInt& rhs) {\n        return StaticModInt{lhs} -= rhs;\n \
-    \   }\n\n    constexpr friend StaticModInt operator*(const StaticModInt& lhs,\n\
-    \                                            const StaticModInt& rhs) {\n    \
-    \    return StaticModInt{lhs} *= rhs;\n    }\n\n    constexpr friend StaticModInt\
-    \ operator/(const StaticModInt& lhs,\n                                       \
-    \     const StaticModInt& rhs) {\n        return StaticModInt{lhs} /= rhs;\n \
-    \   }\n\n    constexpr StaticModInt pow(unsigned y) const {\n        StaticModInt\
-    \ res{1U}, x{*this};\n        while (0 < y) {\n            if (y & 1U) {\n   \
-    \             res *= x;\n            }\n\n            x *= x;\n            y >>=\
-    \ 1U;\n        }\n\n        return res;\n    }\n\n    constexpr StaticModInt inv()\
-    \ const { return pow(M - 2); }\n};\n};  // namespace Ku\n"
-  code: "#pragma once\n\nnamespace Ku {\n/**\n * @brief Static Mod Int\n */\ntemplate\
-    \ <unsigned M> class StaticModInt {\n  private:\n    unsigned v;\n\n  public:\n\
+    \ Static Mod Int\n */\ntemplate <unsigned M> class StaticModInt {\n    static_assert(0\
+    \ < M, \"M must be positive.\");\n\n  private:\n    unsigned v;\n\n  public:\n\
     \    constexpr StaticModInt() : StaticModInt(0) {}\n    constexpr explicit StaticModInt(const\
     \ unsigned long long _v)\n        : v(static_cast<unsigned>(_v % M)) {}\n\n  \
     \  constexpr static unsigned mod() { return M; }\n\n    constexpr unsigned val()\
@@ -53,15 +25,45 @@ data:
     \  return *this;\n    }\n\n    constexpr StaticModInt& operator/=(const StaticModInt&\
     \ rhs) {\n        return *this *= rhs.inv();\n    }\n\n    constexpr friend StaticModInt\
     \ operator+(const StaticModInt& lhs,\n                                       \
-    \     const StaticModInt& rhs) {\n        return StaticModInt{lhs} += rhs;\n \
+    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n \
     \   }\n\n    constexpr friend StaticModInt operator-(const StaticModInt& lhs,\n\
     \                                            const StaticModInt& rhs) {\n    \
-    \    return StaticModInt{lhs} -= rhs;\n    }\n\n    constexpr friend StaticModInt\
+    \    return StaticModInt(lhs) -= rhs;\n    }\n\n    constexpr friend StaticModInt\
     \ operator*(const StaticModInt& lhs,\n                                       \
-    \     const StaticModInt& rhs) {\n        return StaticModInt{lhs} *= rhs;\n \
+    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n \
     \   }\n\n    constexpr friend StaticModInt operator/(const StaticModInt& lhs,\n\
     \                                            const StaticModInt& rhs) {\n    \
-    \    return StaticModInt{lhs} /= rhs;\n    }\n\n    constexpr StaticModInt pow(unsigned\
+    \    return StaticModInt(lhs) /= rhs;\n    }\n\n    constexpr StaticModInt pow(unsigned\
+    \ y) const {\n        StaticModInt res{1U}, x{*this};\n        while (0 < y) {\n\
+    \            if (y & 1U) {\n                res *= x;\n            }\n\n     \
+    \       x *= x;\n            y >>= 1U;\n        }\n\n        return res;\n   \
+    \ }\n\n    constexpr StaticModInt inv() const { return pow(M - 2); }\n};\n}; \
+    \ // namespace Ku\n"
+  code: "#pragma once\n\nnamespace Ku {\n/**\n * @brief Static Mod Int\n */\ntemplate\
+    \ <unsigned M> class StaticModInt {\n    static_assert(0 < M, \"M must be positive.\"\
+    );\n\n  private:\n    unsigned v;\n\n  public:\n    constexpr StaticModInt() :\
+    \ StaticModInt(0) {}\n    constexpr explicit StaticModInt(const unsigned long\
+    \ long _v)\n        : v(static_cast<unsigned>(_v % M)) {}\n\n    constexpr static\
+    \ unsigned mod() { return M; }\n\n    constexpr unsigned val() const { return\
+    \ v; }\n\n    constexpr StaticModInt& operator+=(const StaticModInt& rhs) {\n\
+    \        v += rhs.val();\n        if (M <= v) {\n            v -= M;\n       \
+    \ }\n\n        return *this;\n    }\n\n    constexpr StaticModInt& operator-=(const\
+    \ StaticModInt& rhs) {\n        if (v < rhs.val()) {\n            v += M;\n  \
+    \      }\n        v -= rhs.val();\n\n        return *this;\n    }\n\n    constexpr\
+    \ StaticModInt& operator*=(const StaticModInt& rhs) {\n        v = static_cast<unsigned>(\n\
+    \            (static_cast<unsigned long long>(v) * rhs.val()) % M);\n\n      \
+    \  return *this;\n    }\n\n    constexpr StaticModInt& operator/=(const StaticModInt&\
+    \ rhs) {\n        return *this *= rhs.inv();\n    }\n\n    constexpr friend StaticModInt\
+    \ operator+(const StaticModInt& lhs,\n                                       \
+    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n \
+    \   }\n\n    constexpr friend StaticModInt operator-(const StaticModInt& lhs,\n\
+    \                                            const StaticModInt& rhs) {\n    \
+    \    return StaticModInt(lhs) -= rhs;\n    }\n\n    constexpr friend StaticModInt\
+    \ operator*(const StaticModInt& lhs,\n                                       \
+    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n \
+    \   }\n\n    constexpr friend StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                            const StaticModInt& rhs) {\n    \
+    \    return StaticModInt(lhs) /= rhs;\n    }\n\n    constexpr StaticModInt pow(unsigned\
     \ y) const {\n        StaticModInt res{1U}, x{*this};\n        while (0 < y) {\n\
     \            if (y & 1U) {\n                res *= x;\n            }\n\n     \
     \       x *= x;\n            y >>= 1U;\n        }\n\n        return res;\n   \
@@ -71,7 +73,7 @@ data:
   isVerificationFile: false
   path: math/static_mod_int.hpp
   requiredBy: []
-  timestamp: '2024-12-01 13:32:40+09:00'
+  timestamp: '2024-12-01 15:06:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/static_mod_int.hpp

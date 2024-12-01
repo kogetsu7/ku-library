@@ -102,6 +102,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/prime_sieve.test.cpp
       title: test/math/prime_sieve.test.cpp
+  - name: test/other
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/other/next_combination.test.cpp
+      title: test/other/next_combination.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'
@@ -130,9 +135,6 @@ data:
       title: test/yosupo/zalgorithm.test.cpp
   - name: test/yukicoder
     pages:
-    - icon: ':heavy_check_mark:'
-      path: test/yukicoder/2561.test.cpp
-      title: test/yukicoder/2561.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/468.test.cpp
       title: test/yukicoder/468.test.cpp
