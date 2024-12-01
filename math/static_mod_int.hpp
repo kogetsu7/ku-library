@@ -5,6 +5,8 @@ namespace Ku {
  * @brief Static Mod Int
  */
 template <unsigned M> class StaticModInt {
+    static_assert(0 < M, "M must be positive.");
+
   private:
     unsigned v;
 
