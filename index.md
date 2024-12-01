@@ -85,9 +85,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
+  - name: test/graph
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/GRL_4_A.test.cpp
-      title: test/aoj/GRL_4_A.test.cpp
+      path: test/graph/topological_sort.get.test.cpp
+      title: test/graph/topological_sort.get.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/topological_sort.is_dag.test.cpp
+      title: test/graph/topological_sort.is_dag.test.cpp
   - name: test/math
     pages:
     - icon: ':heavy_check_mark:'
@@ -133,11 +138,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/zalgorithm.test.cpp
       title: test/yosupo/zalgorithm.test.cpp
-  - name: test/yukicoder
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/yukicoder/468.test.cpp
-      title: test/yukicoder/468.test.cpp
 layout: toppage
 ---
 ヘ(°◇、°)ノ

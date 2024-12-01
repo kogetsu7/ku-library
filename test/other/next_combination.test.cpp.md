@@ -21,10 +21,10 @@ data:
     template <class I>\nbool NextCombination(const I& begin, const I& end, const int\
     \ k) {\n    const I sub = std::next(begin, k);\n\n    if (begin == end || begin\
     \ == sub || end == sub) {\n        return false;\n    }\n\n    I src = sub;\n\
-    \    while (begin != src) {\n        src = std::prev(src, 1);\n\n        if (*src\
+    \    while (begin != src) {\n        std::advance(src, -1);\n\n        if (*src\
     \ < *std::prev(end, 1)) {\n            I dst = sub;\n            while (*dst <=\
-    \ *src) {\n                dst = std::next(dst, 1);\n            }\n\n       \
-    \     std::iter_swap(src, dst);\n            std::rotate(std::next(src, 1), std::next(dst,\
+    \ *src) {\n                std::advance(dst, 1);\n            }\n\n          \
+    \  std::iter_swap(src, dst);\n            std::rotate(std::next(src, 1), std::next(dst,\
     \ 1), end);\n            std::rotate(sub, std::next(sub, std::distance(dst, end)\
     \ - 1), end);\n\n            return true;\n        }\n    }\n\n    std::rotate(begin,\
     \ sub, end);\n\n    return false;\n}\n};  // namespace Ku\n#line 8 \"test/other/next_combination.test.cpp\"\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/other/next_combination.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 15:18:32+09:00'
+  timestamp: '2024-12-01 15:22:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/other/next_combination.test.cpp
