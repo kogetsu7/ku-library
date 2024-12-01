@@ -5,7 +5,7 @@
 
 #include <atcoder/modint>
 
-#include "../../math/dynamic_binomial.hpp"
+#include "../../math/binomial.hpp"
 
 int main() {
     int T, M;
@@ -13,9 +13,9 @@ int main() {
 
     atcoder::modint::set_mod(M);
 
-    Ku::DynamicBinomial<atcoder::modint> bin(std::min(M - 1, 10000000));
+    Ku::Binomial<atcoder::modint> bin(std::min(M - 1, 10000000));
 
-    for (; T--;) {
+    while (T--) {
         int n, k;
         std::cin >> n >> k;
 
