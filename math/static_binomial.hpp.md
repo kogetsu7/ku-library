@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/math/static_binomial.test.cpp
+    title: test/math/static_binomial.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "Static Binomial (\u4E8C\u9805\u4FC2\u6570, constexpr)"
     links: []
@@ -49,8 +52,9 @@ data:
   path: math/static_binomial.hpp
   requiredBy: []
   timestamp: '2024-12-01 09:56:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/math/static_binomial.test.cpp
 documentation_of: math/static_binomial.hpp
 layout: document
 redirect_from:

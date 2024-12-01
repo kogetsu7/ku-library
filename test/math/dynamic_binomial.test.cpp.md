@@ -22,7 +22,7 @@ data:
     \ T> class DynamicBinomial {\n  private:\n    unsigned n;\n    std::vector<T>\
     \ fact;\n    std::vector<T> ifact;\n\n  public:\n    DynamicBinomial() : DynamicBinomial{0U}\
     \ {}\n    explicit DynamicBinomial(const unsigned _n)\n        : n(_n), fact(_n\
-    \ + 1), ifact(_n + 1) {\n        fact[0] = T{1};\n        for (unsigned i = 0;\
+    \ + 1), ifact(_n + 1) {\n        fact[0] = T{1U};\n        for (unsigned i = 0;\
     \ i < n; i++) {\n            fact[i + 1] = fact[i] * T{i + 1};\n        }\n\n\
     \        ifact[n] = T{1U} / fact[n];\n\n        for (unsigned i = n; i > 0; i--)\
     \ {\n            ifact[i - 1] = ifact[i] * T{i};\n        }\n    }\n\n    T p(const\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: true
   path: test/math/dynamic_binomial.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 09:56:50+09:00'
+  timestamp: '2024-12-01 10:02:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/dynamic_binomial.test.cpp

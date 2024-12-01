@@ -46,9 +46,12 @@ data:
       path: math/sieve_of_eratosthenes.hpp
       title: "Sieve of Eratosthenes (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\
         \u7BE9)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/static_binomial.hpp
       title: "Static Binomial (\u4E8C\u9805\u4FC2\u6570, constexpr)"
+    - icon: ':heavy_check_mark:'
+      path: math/static_mod_int.hpp
+      title: Static Mod Int
   - name: other
     pages:
     - icon: ':heavy_check_mark:'
@@ -100,6 +103,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/dynamic_binomial.test.cpp
       title: test/math/dynamic_binomial.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/static_binomial.test.cpp
+      title: test/math/static_binomial.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'
