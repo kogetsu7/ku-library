@@ -78,7 +78,7 @@ Binomial<T>(unsigned n)
 ```cpp
 T p(int a, int b)
 ```
-順列の総数${}_n P_r$を返す
+順列の総数${}_a P_b$を返す
 ### 計算量
 - $O(1)$
 
@@ -86,7 +86,7 @@ T p(int a, int b)
 ```cpp
 T c(int a, int b)
 ```
-組み合わせの総数${}_n C_r$を返す
+組み合わせの総数${}_a C_b$を返す
 ### 計算量
 - $O(1)$
 
@@ -94,6 +94,6 @@ T c(int a, int b)
 ```cpp
 T h(int a, int b)
 ```
-重複組み合わせの総数${}_n H_r$を返す
+重複組み合わせの総数${}_a H_b$を返す
 ### 計算量
 - $O(1)$
