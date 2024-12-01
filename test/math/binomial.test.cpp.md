@@ -19,7 +19,7 @@ data:
     #line 2 \"math/binomial.hpp\"\n\n#include <array>\n#include <cassert>\n#include\
     \ <vector>\n\nnamespace Ku {\n/**\n * @brief Binomial (\u4E8C\u9805\u4FC2\u6570\
     )\n */\ntemplate <class T> class Binomial {\n  private:\n    size_t n;\n    std::vector<T>\
-    \ fact;\n    std::vector<T> ifact;\n\n  public:\n    Binomial() : Binomial(0U)\
+    \ fact;\n    std::vector<T> ifact;\n\n  public:\n    Binomial() : Binomial(0)\
     \ {}\n    explicit Binomial(const size_t _n) : n(_n), fact(_n + 1), ifact(_n +\
     \ 1) {\n        fact[0] = T(1);\n        for (size_t i = 0; i < n; i++) {\n  \
     \          fact[i + 1] = fact[i] * T{i + 1};\n        }\n\n        ifact[n] =\
@@ -50,7 +50,7 @@ data:
   isVerificationFile: true
   path: test/math/binomial.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 13:33:28+09:00'
+  timestamp: '2024-12-01 15:54:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/binomial.test.cpp

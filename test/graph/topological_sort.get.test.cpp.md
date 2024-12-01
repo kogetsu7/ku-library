@@ -58,7 +58,7 @@ data:
     \   ep[v] = std::min(ep[v], ep[nv] - co);\n        }\n    }\n\n    int cnt = N;\n\
     \    for (int i = 0; i < N; i++) {\n        if (dp[i] == ep[i]) {\n          \
     \  cnt--;\n        }\n    }\n\n    std::cout << dp[N - 1] << ' ' << cnt << '/'\
-    \ << N << \"\\n\";\n}\n"
+    \ << N << \"\\n\";\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/468\"\n\n#include <algorithm>\n\
     #include <iostream>\n#include <utility>\n#include <vector>\n\n#include \"../../graph/topological_sort.hpp\"\
     \n\nint main() {\n    int N, M;\n    std::cin >> N >> M;\n\n    std::vector<std::vector<std::pair<int,\
@@ -75,13 +75,13 @@ data:
     \   ep[v] = std::min(ep[v], ep[nv] - co);\n        }\n    }\n\n    int cnt = N;\n\
     \    for (int i = 0; i < N; i++) {\n        if (dp[i] == ep[i]) {\n          \
     \  cnt--;\n        }\n    }\n\n    std::cout << dp[N - 1] << ' ' << cnt << '/'\
-    \ << N << \"\\n\";\n}\n"
+    \ << N << \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - graph/topological_sort.hpp
   isVerificationFile: true
   path: test/graph/topological_sort.get.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 15:49:53+09:00'
+  timestamp: '2024-12-01 15:52:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/topological_sort.get.test.cpp
