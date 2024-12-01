@@ -15,7 +15,7 @@ template <class T> class Binomial {
     std::vector<T> ifact;
 
   public:
-    Binomial() : Binomial(0U) {}
+    Binomial() : Binomial(0) {}
     explicit Binomial(const size_t _n) : n(_n), fact(_n + 1), ifact(_n + 1) {
         fact[0] = T(1);
         for (size_t i = 0; i < n; i++) {
