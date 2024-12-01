@@ -58,8 +58,8 @@ data:
   - test/math/binomial.test.cpp
 documentation_of: math/binomial.hpp
 layout: document
-redirect_from:
-- /library/math/binomial.hpp
-- /library/math/binomial.hpp.html
-title: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
+titile: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
 ---
+
+## 概要
+二項係数を前計算する
