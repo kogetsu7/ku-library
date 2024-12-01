@@ -38,12 +38,12 @@ data:
     \ j) + lhs.get(i, k) * rhs.get(k, j));\n                }\n            }\n   \
     \     }\n\n        return res;\n    }\n\n    Matrix& operator*=(const Matrix&\
     \ rhs) {\n        assert(height() == width());\n        assert(rhs.height() ==\
-    \ rhs.width());\n        assert(height() == rhs.height());\n\n        return *this\
-    \ = *this * rhs;\n    }\n\n    Matrix pow(unsigned long long y) const {\n    \
-    \    assert(height() == width());\n\n        Matrix res{identity(height())}, x{*this};\n\
-    \        while (0 < y) {\n            if (y & 1U) {\n                res *= x;\n\
-    \            }\n\n            x *= x;\n            y >>= 1U;\n        }\n\n  \
-    \      return res;\n    }\n};\n};  // namespace Ku\n"
+    \ rhs.width());\n\n        return *this = *this * rhs;\n    }\n\n    Matrix pow(unsigned\
+    \ long long y) const {\n        assert(height() == width());\n\n        Matrix\
+    \ res{identity(height())}, x{*this};\n        while (0 < y) {\n            if\
+    \ (y & 1U) {\n                res *= x;\n            }\n\n            x *= x;\n\
+    \            y >>= 1U;\n        }\n\n        return res;\n    }\n};\n};  // namespace\
+    \ Ku\n"
   code: "#pragma once\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
     \nnamespace Ku {\n/**\n * @brief Matrix (\u884C\u5217)\n */\ntemplate <class T>\
     \ class Matrix {\n  private:\n    size_t h;\n    size_t w;\n    std::vector<std::vector<T>>\
@@ -70,17 +70,16 @@ data:
     \ k) * rhs.get(k, j));\n                }\n            }\n        }\n\n      \
     \  return res;\n    }\n\n    Matrix& operator*=(const Matrix& rhs) {\n       \
     \ assert(height() == width());\n        assert(rhs.height() == rhs.width());\n\
-    \        assert(height() == rhs.height());\n\n        return *this = *this * rhs;\n\
-    \    }\n\n    Matrix pow(unsigned long long y) const {\n        assert(height()\
-    \ == width());\n\n        Matrix res{identity(height())}, x{*this};\n        while\
-    \ (0 < y) {\n            if (y & 1U) {\n                res *= x;\n          \
-    \  }\n\n            x *= x;\n            y >>= 1U;\n        }\n\n        return\
-    \ res;\n    }\n};\n};  // namespace Ku\n"
+    \n        return *this = *this * rhs;\n    }\n\n    Matrix pow(unsigned long long\
+    \ y) const {\n        assert(height() == width());\n\n        Matrix res{identity(height())},\
+    \ x{*this};\n        while (0 < y) {\n            if (y & 1U) {\n            \
+    \    res *= x;\n            }\n\n            x *= x;\n            y >>= 1U;\n\
+    \        }\n\n        return res;\n    }\n};\n};  // namespace Ku\n"
   dependsOn: []
   isVerificationFile: false
   path: math/matrix.hpp
   requiredBy: []
-  timestamp: '2024-12-01 11:33:01+09:00'
+  timestamp: '2024-12-01 11:41:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/matrix.test.cpp

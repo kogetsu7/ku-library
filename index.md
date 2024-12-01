@@ -43,9 +43,8 @@ data:
       path: math/matrix.hpp
       title: "Matrix (\u884C\u5217)"
     - icon: ':heavy_check_mark:'
-      path: math/sieve_of_eratosthenes.hpp
-      title: "Sieve of Eratosthenes (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\
-        \u7BE9)"
+      path: math/prime_sieve.hpp
+      title: "Prime Sieve (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
     - icon: ':heavy_check_mark:'
       path: math/static_binomial.hpp
       title: "Static Binomial (\u4E8C\u9805\u4FC2\u6570, constexpr)"
@@ -75,9 +74,6 @@ data:
       path: test/aoj/2426.test.cpp
       title: test/aoj/2426.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_1_C.test.cpp
-      title: test/aoj/ALDS1_1_C.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B.test.cpp
       title: test/aoj/DSL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -106,6 +102,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/matrix.test.cpp
       title: test/math/matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/prime_sieve.test.cpp
+      title: test/math/prime_sieve.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/math/static_binomial.test.cpp
       title: test/math/static_binomial.test.cpp

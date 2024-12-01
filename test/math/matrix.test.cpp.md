@@ -41,21 +41,21 @@ data:
     \ j,\n                            res.get(i, j) + lhs.get(i, k) * rhs.get(k, j));\n\
     \                }\n            }\n        }\n\n        return res;\n    }\n\n\
     \    Matrix& operator*=(const Matrix& rhs) {\n        assert(height() == width());\n\
-    \        assert(rhs.height() == rhs.width());\n        assert(height() == rhs.height());\n\
-    \n        return *this = *this * rhs;\n    }\n\n    Matrix pow(unsigned long long\
-    \ y) const {\n        assert(height() == width());\n\n        Matrix res{identity(height())},\
-    \ x{*this};\n        while (0 < y) {\n            if (y & 1U) {\n            \
-    \    res *= x;\n            }\n\n            x *= x;\n            y >>= 1U;\n\
-    \        }\n\n        return res;\n    }\n};\n};  // namespace Ku\n#line 6 \"\
-    test/math/matrix.test.cpp\"\n\nint main() {\n    std::vector M(2, std::vector<int>(2));\n\
-    \    for (int i = 0; i < 2; i++) {\n        for (int j = 0; j < 2; j++) {\n  \
-    \          std::cin >> M[i][j];\n        }\n    }\n\n    Ku::Matrix<int> mat1(M),\
-    \ mat2(2);\n    for (int i = 0; i < 2; i++) {\n        for (int j = 0; j < 2;\
-    \ j++) {\n            mat2.set(i, j, M[i][j]);\n        }\n    }\n\n    assert(mat1\
-    \ == mat2);\n\n    mat1 = mat1.pow(3);\n\n    for (int i = 0; i < 2; i++) {\n\
-    \        for (int j = 0; j < 2; j++) {\n            if (0 < j) {\n           \
-    \     std::cout << \" \";\n            }\n\n            std::cout << mat1.get(i,\
-    \ j);\n        }\n        std::cout << \"\\n\";\n    }\n\n    return 0;\n}\n"
+    \        assert(rhs.height() == rhs.width());\n\n        return *this = *this\
+    \ * rhs;\n    }\n\n    Matrix pow(unsigned long long y) const {\n        assert(height()\
+    \ == width());\n\n        Matrix res{identity(height())}, x{*this};\n        while\
+    \ (0 < y) {\n            if (y & 1U) {\n                res *= x;\n          \
+    \  }\n\n            x *= x;\n            y >>= 1U;\n        }\n\n        return\
+    \ res;\n    }\n};\n};  // namespace Ku\n#line 6 \"test/math/matrix.test.cpp\"\n\
+    \nint main() {\n    std::vector M(2, std::vector<int>(2));\n    for (int i = 0;\
+    \ i < 2; i++) {\n        for (int j = 0; j < 2; j++) {\n            std::cin >>\
+    \ M[i][j];\n        }\n    }\n\n    Ku::Matrix<int> mat1(M), mat2(2);\n    for\
+    \ (int i = 0; i < 2; i++) {\n        for (int j = 0; j < 2; j++) {\n         \
+    \   mat2.set(i, j, M[i][j]);\n        }\n    }\n\n    assert(mat1 == mat2);\n\n\
+    \    mat1 = mat1.pow(3);\n\n    for (int i = 0; i < 2; i++) {\n        for (int\
+    \ j = 0; j < 2; j++) {\n            if (0 < j) {\n                std::cout <<\
+    \ \" \";\n            }\n\n            std::cout << mat1.get(i, j);\n        }\n\
+    \        std::cout << \"\\n\";\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/2441\"\n\n#include <iostream>\n\
     \n#include \"../../math/matrix.hpp\"\n\nint main() {\n    std::vector M(2, std::vector<int>(2));\n\
     \    for (int i = 0; i < 2; i++) {\n        for (int j = 0; j < 2; j++) {\n  \
@@ -71,7 +71,7 @@ data:
   isVerificationFile: true
   path: test/math/matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 11:33:01+09:00'
+  timestamp: '2024-12-01 11:41:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/matrix.test.cpp
