@@ -75,7 +75,6 @@ template <class T> class Matrix {
     Matrix& operator*=(const Matrix& rhs) {
         assert(height() == width());
         assert(rhs.height() == rhs.width());
-        assert(height() == rhs.height());
 
         return *this = *this * rhs;
     }
