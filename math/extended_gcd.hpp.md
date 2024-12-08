@@ -13,23 +13,25 @@ data:
     document_title: "Extended Euclidean Algorithm (\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\
       \u30C3\u30C9\u306E\u4E92\u9664\u6CD5)"
     links: []
-  bundledCode: "#line 2 \"math/extended_gcd.hpp\"\n\nnamespace Ku {\n/**\n * @brief\
+  bundledCode: "#line 2 \"math/extended_gcd.hpp\"\n\n#include <type_traits>\n\nnamespace\
+    \ ku {\n/**\n * @brief Extended Euclidean Algorithm (\u62E1\u5F35\u30E6\u30FC\u30AF\
+    \u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5)\n */\ntemplate <class T> T ExtendedGCD(T\
+    \ a, T b, T& x, T& y) {\n    static_assert(!std::is_floating_point_v<T>, \"T must\
+    \ not be floating point\");\n\n    if (b == T(0)) {\n        x = T(1);\n     \
+    \   y = T(0);\n        return a;\n    }\n\n    T res = ExtendedGCD(b, a % b, y,\
+    \ x);\n    y -= (a / b) * x;\n\n    return res;\n}\n};  // namespace ku\n"
+  code: "#pragma once\n\n#include <type_traits>\n\nnamespace ku {\n/**\n * @brief\
     \ Extended Euclidean Algorithm (\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\
     \u306E\u4E92\u9664\u6CD5)\n */\ntemplate <class T> T ExtendedGCD(T a, T b, T&\
-    \ x, T& y) {\n    if (b == 0) {\n        x = 1;\n        y = 0;\n        return\
-    \ a;\n    }\n\n    T res = ExtendedGCD(b, a % b, y, x);\n    y -= (a / b) * x;\n\
-    \n    return res;\n}\n};  // namespace Ku\n"
-  code: "#pragma once\n\nnamespace Ku {\n/**\n * @brief Extended Euclidean Algorithm\
-    \ (\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5)\n\
-    \ */\ntemplate <class T> T ExtendedGCD(T a, T b, T& x, T& y) {\n    if (b == 0)\
-    \ {\n        x = 1;\n        y = 0;\n        return a;\n    }\n\n    T res = ExtendedGCD(b,\
-    \ a % b, y, x);\n    y -= (a / b) * x;\n\n    return res;\n}\n};  // namespace\
-    \ Ku\n"
+    \ x, T& y) {\n    static_assert(!std::is_floating_point_v<T>, \"T must not be\
+    \ floating point\");\n\n    if (b == T(0)) {\n        x = T(1);\n        y = T(0);\n\
+    \        return a;\n    }\n\n    T res = ExtendedGCD(b, a % b, y, x);\n    y -=\
+    \ (a / b) * x;\n\n    return res;\n}\n};  // namespace ku\n"
   dependsOn: []
   isVerificationFile: false
   path: math/extended_gcd.hpp
   requiredBy: []
-  timestamp: '2024-12-01 13:41:40+09:00'
+  timestamp: '2024-12-08 12:23:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/extended_gcd.test.cpp

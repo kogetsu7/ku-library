@@ -12,7 +12,7 @@ data:
   attributes:
     document_title: Static Mod Int
     links: []
-  bundledCode: "#line 2 \"math/static_mod_int.hpp\"\n\nnamespace Ku {\n/**\n * @brief\
+  bundledCode: "#line 2 \"math/static_mod_int.hpp\"\n\nnamespace ku {\n/**\n * @brief\
     \ Static Mod Int\n */\ntemplate <unsigned M> class StaticModInt {\n    static_assert(0\
     \ < M, \"M must be positive.\");\n\n  private:\n    unsigned v;\n\n  public:\n\
     \    constexpr StaticModInt() noexcept : v(0) {}\n    explicit constexpr StaticModInt(const\
@@ -49,8 +49,8 @@ data:
     \   StaticModInt x = *this;\n\n        while (0 < y) {\n            if (y & 1U)\
     \ {\n                res *= x;\n            }\n\n            x *= x;\n       \
     \     y >>= 1U;\n        }\n\n        return res;\n    }\n\n    constexpr StaticModInt\
-    \ inv() const noexcept { return pow(M - 2); }\n};\n};  // namespace Ku\n"
-  code: "#pragma once\n\nnamespace Ku {\n/**\n * @brief Static Mod Int\n */\ntemplate\
+    \ inv() const noexcept { return pow(M - 2); }\n};\n};  // namespace ku\n"
+  code: "#pragma once\n\nnamespace ku {\n/**\n * @brief Static Mod Int\n */\ntemplate\
     \ <unsigned M> class StaticModInt {\n    static_assert(0 < M, \"M must be positive.\"\
     );\n\n  private:\n    unsigned v;\n\n  public:\n    constexpr StaticModInt() noexcept\
     \ : v(0) {}\n    explicit constexpr StaticModInt(const unsigned long long _v)\
@@ -87,12 +87,12 @@ data:
     \   while (0 < y) {\n            if (y & 1U) {\n                res *= x;\n  \
     \          }\n\n            x *= x;\n            y >>= 1U;\n        }\n\n    \
     \    return res;\n    }\n\n    constexpr StaticModInt inv() const noexcept { return\
-    \ pow(M - 2); }\n};\n};  // namespace Ku\n"
+    \ pow(M - 2); }\n};\n};  // namespace ku\n"
   dependsOn: []
   isVerificationFile: false
   path: math/static_mod_int.hpp
   requiredBy: []
-  timestamp: '2024-12-08 11:42:24+09:00'
+  timestamp: '2024-12-08 12:23:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/matrix.test.cpp
