@@ -17,9 +17,9 @@ template <class T> T ExtendedGCD(T a, T b, T& x, T& y) {
         return a;
     }
 
-    T res = ExtendedGCD(b, a % b, y, x);
-    y -= (a / b) * x;
+T res = ExtendedGCD(b, a % b, y, x);
+y -= (a / b) * x;
 
-    return res;
+        return res;
 }
 };  // namespace ku
