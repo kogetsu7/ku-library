@@ -11,10 +11,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "Binomial (\u4E8C\u9805\u4FC2\u6570)"
-    links: []
-  bundledCode: "#line 2 \"math/binomial.hpp\"\n\n#include <array>\n#include <cassert>\n\
-    #include <type_traits>\n#include <vector>\n\nnamespace ku {\n/**\n * @brief Binomial\
-    \ (\u4E8C\u9805\u4FC2\u6570)\n */\ntemplate <class T> class Binomial {\n    static_assert(!std::is_floating_point_v<T>,\
+    links:
+    - https://blog.hamayanhamayan.com/entry/2018/06/06/210256
+  bundledCode: "#line 2 \"math/binomial.hpp\"\n\n#include <cassert>\n#include <type_traits>\n\
+    #include <vector>\n\nnamespace ku {\n/**\n * @brief Binomial (\u4E8C\u9805\u4FC2\
+    \u6570)\n * @note \u53C2\u8003: https://blog.hamayanhamayan.com/entry/2018/06/06/210256\n\
+    \ */\ntemplate <class T> class Binomial {\n    static_assert(!std::is_floating_point_v<T>,\
     \ \"T must not be floating point\");\n\n  private:\n    size_t n;\n    std::vector<T>\
     \ fact;\n    std::vector<T> ifact;\n\n  public:\n    Binomial() noexcept : Binomial(0)\
     \ {}\n    explicit Binomial(const size_t _n) noexcept\n        : n(_n), fact(_n\
@@ -33,9 +35,10 @@ data:
     \ && b == 0) {\n            return T(1);\n        }\n\n        if (a <= 0 || b\
     \ < 0) {\n            return T(0);\n        }\n\n        return c(a + b - 1, b);\n\
     \    }\n};\n}  // namespace ku\n"
-  code: "#pragma once\n\n#include <array>\n#include <cassert>\n#include <type_traits>\n\
-    #include <vector>\n\nnamespace ku {\n/**\n * @brief Binomial (\u4E8C\u9805\u4FC2\
-    \u6570)\n */\ntemplate <class T> class Binomial {\n    static_assert(!std::is_floating_point_v<T>,\
+  code: "#pragma once\n\n#include <cassert>\n#include <type_traits>\n#include <vector>\n\
+    \nnamespace ku {\n/**\n * @brief Binomial (\u4E8C\u9805\u4FC2\u6570)\n * @note\
+    \ \u53C2\u8003: https://blog.hamayanhamayan.com/entry/2018/06/06/210256\n */\n\
+    template <class T> class Binomial {\n    static_assert(!std::is_floating_point_v<T>,\
     \ \"T must not be floating point\");\n\n  private:\n    size_t n;\n    std::vector<T>\
     \ fact;\n    std::vector<T> ifact;\n\n  public:\n    Binomial() noexcept : Binomial(0)\
     \ {}\n    explicit Binomial(const size_t _n) noexcept\n        : n(_n), fact(_n\
@@ -58,7 +61,7 @@ data:
   isVerificationFile: false
   path: math/binomial.hpp
   requiredBy: []
-  timestamp: '2024-12-08 11:54:51+09:00'
+  timestamp: '2024-12-08 08:00:28+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/binomial.test.cpp
