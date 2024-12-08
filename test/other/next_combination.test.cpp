@@ -6,7 +6,8 @@
 #include <numeric>
 #include <vector>
 
-int main() {
+int main()
+{
     int N, K;
     std::cin >> N >> K;
     std::vector<long long> A(N);
@@ -30,7 +31,7 @@ int main() {
         }
     } while (ku::NextCombination(id.begin(), id.end(), K));
 
-    std::cout << ans << "\n";
+std::cout << ans << "\n";
 
     return 0;
 }
