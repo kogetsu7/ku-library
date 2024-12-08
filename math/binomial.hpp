@@ -2,21 +2,25 @@
 
 #include <array>
 #include <cassert>
+#include <type_traits>
 #include <vector>
 
-namespace Ku {
+namespace ku {
 /**
  * @brief Binomial (二項係数)
  */
 template <class T> class Binomial {
+    static_assert(!std::is_floating_point_v<T>, "T must not be floating point");
+
   private:
     size_t n;
     std::vector<T> fact;
     std::vector<T> ifact;
 
   public:
-    Binomial() : Binomial(0) {}
-    explicit Binomial(const size_t _n) : n(_n), fact(_n + 1), ifact(_n + 1) {
+    Binomial() noexcept : Binomial(0) {}
+    explicit Binomial(const size_t _n) noexcept
+        : n(_n), fact(_n + 1), ifact(_n + 1) {
         fact[0] = T(1);
         for (size_t i = 0; i < n; i++) {
             fact[i + 1] = fact[i] * T(i + 1);
@@ -29,7 +33,8 @@ template <class T> class Binomial {
         }
     }
 
-    T p(const int a, const int b) const {
+    //! 順列
+    T p(const int a, const int b) const noexcept {
         if (b < 0 || a < b) {
             return T(0);
         }
@@ -41,7 +46,8 @@ template <class T> class Binomial {
         return fact[a] * ifact[a - b];
     }
 
-    T c(const int a, const int b) const {
+    //! 組合せ
+    T c(const int a, const int b) const noexcept {
         if (b < 0 || a < b) {
             return T(0);
         }
@@ -51,7 +57,8 @@ template <class T> class Binomial {
         return p(a, b) * ifact[b];
     }
 
-    T h(const int a, const int b) const {
+    //! 重複組合せ
+    T h(const int a, const int b) const noexcept {
         if (a == 0 && b == 0) {
             return T(1);
         }
@@ -63,4 +70,4 @@ template <class T> class Binomial {
         return c(a + b - 1, b);
     }
 };
-}  // namespace Ku
+}  // namespace ku
