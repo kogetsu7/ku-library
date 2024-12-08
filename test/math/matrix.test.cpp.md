@@ -53,48 +53,52 @@ data:
     math/static_mod_int.hpp\"\n\nnamespace Ku {\n/**\n * @brief Static Mod Int\n */\n\
     template <unsigned M> class StaticModInt {\n    static_assert(0 < M, \"M must\
     \ be positive.\");\n\n  private:\n    unsigned v;\n\n  public:\n    constexpr\
-    \ StaticModInt() : StaticModInt(0) {}\n    constexpr explicit StaticModInt(const\
-    \ unsigned long long _v)\n        : v(static_cast<unsigned>(_v % M)) {}\n\n  \
-    \  constexpr static unsigned mod() { return M; }\n\n    constexpr unsigned val()\
-    \ const { return v; }\n\n    constexpr friend bool operator==(const StaticModInt&\
-    \ lhs,\n                                     const StaticModInt& rhs) {\n    \
-    \    return lhs.v == rhs.v;\n    }\n\n    constexpr friend bool operator!=(const\
+    \ StaticModInt() noexcept : v(0) {}\n    constexpr explicit StaticModInt(const\
+    \ unsigned long long _v) noexcept\n        : v(static_cast<unsigned>(_v % M))\
+    \ {}\n\n    constexpr static StaticModInt raw(const unsigned _v) noexcept {\n\
+    \        StaticModInt res;\n        res.v = _v;\n\n        return res;\n    }\n\
+    \n    constexpr static unsigned mod() noexcept { return M; }\n\n    constexpr\
+    \ unsigned val() const noexcept { return v; }\n\n    constexpr friend bool operator==(const\
     \ StaticModInt& lhs,\n                                     const StaticModInt&\
-    \ rhs) {\n        return lhs.v != rhs.v;\n    }\n\n    constexpr StaticModInt&\
-    \ operator+=(const StaticModInt& rhs) {\n        v += rhs.val();\n        if (M\
-    \ <= v) {\n            v -= M;\n        }\n\n        return *this;\n    }\n\n\
-    \    constexpr StaticModInt& operator-=(const StaticModInt& rhs) {\n        if\
-    \ (v < rhs.val()) {\n            v += M;\n        }\n        v -= rhs.val();\n\
-    \n        return *this;\n    }\n\n    constexpr StaticModInt& operator*=(const\
-    \ StaticModInt& rhs) {\n        v = static_cast<unsigned>(\n            (static_cast<unsigned\
-    \ long long>(v) * rhs.val()) % M);\n\n        return *this;\n    }\n\n    constexpr\
-    \ StaticModInt& operator/=(const StaticModInt& rhs) {\n        return *this *=\
-    \ rhs.inv();\n    }\n\n    constexpr friend StaticModInt operator+(const StaticModInt&\
-    \ lhs,\n                                            const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) += rhs;\n    }\n\n    constexpr friend StaticModInt\
-    \ operator-(const StaticModInt& lhs,\n                                       \
-    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n \
-    \   }\n\n    constexpr friend StaticModInt operator*(const StaticModInt& lhs,\n\
-    \                                            const StaticModInt& rhs) {\n    \
-    \    return StaticModInt(lhs) *= rhs;\n    }\n\n    constexpr friend StaticModInt\
-    \ operator/(const StaticModInt& lhs,\n                                       \
-    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n \
-    \   }\n\n    constexpr StaticModInt pow(unsigned y) const {\n        StaticModInt\
-    \ res{1U}, x{*this};\n        while (0 < y) {\n            if (y & 1U) {\n   \
-    \             res *= x;\n            }\n\n            x *= x;\n            y >>=\
-    \ 1U;\n        }\n\n        return res;\n    }\n\n    constexpr StaticModInt inv()\
-    \ const { return pow(M - 2); }\n};\n};  // namespace Ku\n#line 8 \"test/math/matrix.test.cpp\"\
-    \n\nint main() {\n    int N;\n    long long K;\n    std::cin >> N >> K;\n    std::vector\
-    \ A(N, std::vector<Ku::StaticModInt<998244353>>(N));\n    Ku::Matrix<Ku::StaticModInt<998244353>>\
-    \ mat(N);\n    for (int i = 0; i < N; i++) {\n        for (int j = 0; j < N; j++)\
-    \ {\n            unsigned a;\n            std::cin >> a;\n            A[i][j]\
-    \ = Ku::StaticModInt<998244353>(a);\n            mat.set(i, j, A[i][j]);\n   \
-    \     }\n    }\n\n    Ku::Matrix<Ku::StaticModInt<998244353>> mat2(A);\n    assert(mat\
-    \ == mat2);\n\n    mat = mat.pow(K);\n\n    for (int i = 0; i < N; i++) {\n  \
-    \      for (int j = 0; j < N; j++) {\n            if (0 < j) {\n             \
-    \   std::cout << \" \";\n            }\n\n            std::cout << mat.get(i,\
-    \ j).val();\n        }\n        std::cout << \"\\n\";\n    }\n\n    return 0;\n\
-    }\n"
+    \ rhs) noexcept {\n        return lhs.v == rhs.v;\n    }\n\n    constexpr friend\
+    \ bool operator!=(const StaticModInt& lhs,\n                                 \
+    \    const StaticModInt& rhs) noexcept {\n        return lhs.v != rhs.v;\n   \
+    \ }\n\n    constexpr StaticModInt& operator+=(const StaticModInt& rhs) noexcept\
+    \ {\n        v += rhs.val();\n        if (M <= v) {\n            v -= M;\n   \
+    \     }\n\n        return *this;\n    }\n\n    constexpr StaticModInt& operator-=(const\
+    \ StaticModInt& rhs) noexcept {\n        if (v < rhs.val()) {\n            v +=\
+    \ M;\n        }\n        v -= rhs.val();\n\n        return *this;\n    }\n\n \
+    \   constexpr StaticModInt& operator*=(const StaticModInt& rhs) noexcept {\n \
+    \       v = static_cast<unsigned>(\n            (static_cast<unsigned long long>(v)\
+    \ * rhs.val()) % M);\n\n        return *this;\n    }\n\n    constexpr StaticModInt&\
+    \ operator/=(const StaticModInt& rhs) noexcept {\n        assert(rhs.val() !=\
+    \ 0);\n\n        return *this *= rhs.inv();\n    }\n\n    constexpr friend StaticModInt\
+    \ operator+(const StaticModInt& lhs,\n                                       \
+    \     const StaticModInt& rhs) noexcept {\n        return StaticModInt(lhs) +=\
+    \ rhs;\n    }\n\n    constexpr friend StaticModInt operator-(const StaticModInt&\
+    \ lhs,\n                                            const StaticModInt& rhs) noexcept\
+    \ {\n        return StaticModInt(lhs) -= rhs;\n    }\n\n    constexpr friend StaticModInt\
+    \ operator*(const StaticModInt& lhs,\n                                       \
+    \     const StaticModInt& rhs) noexcept {\n        return StaticModInt(lhs) *=\
+    \ rhs;\n    }\n\n    constexpr friend StaticModInt operator/(const StaticModInt&\
+    \ lhs,\n                                            const StaticModInt& rhs) noexcept\
+    \ {\n        return StaticModInt(lhs) /= rhs;\n    }\n\n    constexpr StaticModInt\
+    \ pow(unsigned y) const noexcept {\n        StaticModInt res = raw(1);\n     \
+    \   StaticModInt x = *this;\n\n        while (0 < y) {\n            if (y & 1U)\
+    \ {\n                res *= x;\n            }\n\n            x *= x;\n       \
+    \     y >>= 1U;\n        }\n\n        return res;\n    }\n\n    constexpr StaticModInt\
+    \ inv() const noexcept { return pow(M - 2); }\n};\n};  // namespace Ku\n#line\
+    \ 8 \"test/math/matrix.test.cpp\"\n\nint main() {\n    int N;\n    long long K;\n\
+    \    std::cin >> N >> K;\n    std::vector A(N, std::vector<Ku::StaticModInt<998244353>>(N));\n\
+    \    Ku::Matrix<Ku::StaticModInt<998244353>> mat(N);\n    for (int i = 0; i <\
+    \ N; i++) {\n        for (int j = 0; j < N; j++) {\n            unsigned a;\n\
+    \            std::cin >> a;\n            A[i][j] = Ku::StaticModInt<998244353>(a);\n\
+    \            mat.set(i, j, A[i][j]);\n        }\n    }\n\n    Ku::Matrix<Ku::StaticModInt<998244353>>\
+    \ mat2(A);\n    assert(mat == mat2);\n\n    mat = mat.pow(K);\n\n    for (int\
+    \ i = 0; i < N; i++) {\n        for (int j = 0; j < N; j++) {\n            if\
+    \ (0 < j) {\n                std::cout << \" \";\n            }\n\n          \
+    \  std::cout << mat.get(i, j).val();\n        }\n        std::cout << \"\\n\"\
+    ;\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_matrix\"\n\n#include\
     \ <iostream>\n#include <vector>\n\n#include \"../../math/matrix.hpp\"\n#include\
     \ \"../../math/static_mod_int.hpp\"\n\nint main() {\n    int N;\n    long long\
@@ -114,7 +118,7 @@ data:
   isVerificationFile: true
   path: test/math/matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 16:12:54+09:00'
+  timestamp: '2024-12-08 11:39:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/matrix.test.cpp
