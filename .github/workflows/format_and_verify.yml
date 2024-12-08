@@ -1,4 +1,4 @@
-name: verify
+name: Fomart and Verify
 
 on:
   push:
@@ -17,13 +17,13 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Install Clang-Format
+    - name: Install clang-format
       run: |
         sudo apt-get update
         sudo apt-get install clang-format
 
-    - name: Format with Clang-Format
-      run: find . -type f \( -name "*.cpp" -o -name "*.hpp" \) -exec clang-format -i {} +
+    - name: Format with clang-format
+      run: find . -type f \( -name "*.cpp" -o -name "*.hpp" \) | xargs clang-format -i
 
     - uses: stefanzweifel/git-auto-commit-action@v5
       with:
@@ -48,7 +48,7 @@ jobs:
       with:
         python-version: 3.13.0
 
-    - name: Install dependencies
+    - name: Install oj-verify
       run: pip3 install -U online-judge-verify-helper
       
     - name: Clone AC-Library
