@@ -13,9 +13,9 @@ template <class T> class Binomial {
     static_assert(!std::is_floating_point_v<T>, "T must not be floating point");
 
   private:
-  size_t n;
-  std::vector<T> fact;
-  std::vector<T> ifact;
+    size_t n;
+    std::vector<T> fact;
+    std::vector<T> ifact;
 
   public:
     Binomial() noexcept : Binomial(0) {}
