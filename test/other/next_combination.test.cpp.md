@@ -28,8 +28,8 @@ data:
     \ end) - 1), end);\n\n            return true;\n        }\n    }\n\n    std::rotate(begin,\
     \ sub, end);\n\n    return false;\n}\n};  // namespace ku\n#line 4 \"test/other/next_combination.test.cpp\"\
     \n\n#include <iostream>\n#include <numeric>\n#include <vector>\n\nint main() {\n\
-    int N, K;\n    std::cin >> N >> K;\n    std::vector<long long> A(N);\n    for\
-    \ (int i = 0; i < N; i++) {\n        std::cin >> A[i];\n    }\n\n    std::vector<int>\
+    \    int N, K;\n    std::cin >> N >> K;\n    std::vector<long long> A(N);\n  \
+    \  for (int i = 0; i < N; i++) {\n        std::cin >> A[i];\n    }\n\n    std::vector<int>\
     \ id(N);\n    std::iota(id.begin(), id.end(), 0);\n\n    int ans = 0;\n    do\
     \ {\n        long long s1 = 0, s2 = 0;\n        for (int i = 0; i < K; i++) {\n\
     \            s1 = (s1 + A[id[i]]) % 998;\n            s2 = (s2 + A[id[i]]) % 998244353;\n\
@@ -38,20 +38,20 @@ data:
     \ << ans << \"\\n\";\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/2561\"\n\n#include \"\
     ../../other/next_combination.hpp\"\n\n#include <iostream>\n#include <numeric>\n\
-    #include <vector>\n\nint main() {\nint N, K;\n    std::cin >> N >> K;\n    std::vector<long\
-    \ long> A(N);\n    for (int i = 0; i < N; i++) {\n        std::cin >> A[i];\n\
-    \    }\n\n    std::vector<int> id(N);\n    std::iota(id.begin(), id.end(), 0);\n\
-    \n    int ans = 0;\n    do {\n        long long s1 = 0, s2 = 0;\n        for (int\
-    \ i = 0; i < K; i++) {\n            s1 = (s1 + A[id[i]]) % 998;\n            s2\
-    \ = (s2 + A[id[i]]) % 998244353;\n        }\n\n        if (s2 <= s1) {\n     \
-    \       ans = (ans + 1) % 998;\n        }\n    } while (ku::NextCombination(id.begin(),\
+    #include <vector>\n\nint main() {\n    int N, K;\n    std::cin >> N >> K;\n  \
+    \  std::vector<long long> A(N);\n    for (int i = 0; i < N; i++) {\n        std::cin\
+    \ >> A[i];\n    }\n\n    std::vector<int> id(N);\n    std::iota(id.begin(), id.end(),\
+    \ 0);\n\n    int ans = 0;\n    do {\n        long long s1 = 0, s2 = 0;\n     \
+    \   for (int i = 0; i < K; i++) {\n            s1 = (s1 + A[id[i]]) % 998;\n \
+    \           s2 = (s2 + A[id[i]]) % 998244353;\n        }\n\n        if (s2 <=\
+    \ s1) {\n            ans = (ans + 1) % 998;\n        }\n    } while (ku::NextCombination(id.begin(),\
     \ id.end(), K));\n\n    std::cout << ans << \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - other/next_combination.hpp
   isVerificationFile: true
   path: test/other/next_combination.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 12:57:24+09:00'
+  timestamp: '2024-12-08 05:48:37+00:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/other/next_combination.test.cpp
