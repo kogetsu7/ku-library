@@ -53,14 +53,14 @@ data:
     math/static_mod_int.hpp\"\n\nnamespace Ku {\n/**\n * @brief Static Mod Int\n */\n\
     template <unsigned M> class StaticModInt {\n    static_assert(0 < M, \"M must\
     \ be positive.\");\n\n  private:\n    unsigned v;\n\n  public:\n    constexpr\
-    \ StaticModInt() noexcept : v(0) {}\n    constexpr explicit StaticModInt(const\
+    \ StaticModInt() noexcept : v(0) {}\n    explicit constexpr StaticModInt(const\
     \ unsigned long long _v) noexcept\n        : v(static_cast<unsigned>(_v % M))\
-    \ {}\n\n    constexpr static StaticModInt raw(const unsigned _v) noexcept {\n\
+    \ {}\n\n    static constexpr StaticModInt raw(const unsigned _v) noexcept {\n\
     \        StaticModInt res;\n        res.v = _v;\n\n        return res;\n    }\n\
-    \n    constexpr static unsigned mod() noexcept { return M; }\n\n    constexpr\
-    \ unsigned val() const noexcept { return v; }\n\n    constexpr friend bool operator==(const\
+    \n    static constexpr unsigned mod() noexcept { return M; }\n\n    constexpr\
+    \ unsigned val() const noexcept { return v; }\n\n    friend constexpr bool operator==(const\
     \ StaticModInt& lhs,\n                                     const StaticModInt&\
-    \ rhs) noexcept {\n        return lhs.v == rhs.v;\n    }\n\n    constexpr friend\
+    \ rhs) noexcept {\n        return lhs.v == rhs.v;\n    }\n\n    friend constexpr\
     \ bool operator!=(const StaticModInt& lhs,\n                                 \
     \    const StaticModInt& rhs) noexcept {\n        return lhs.v != rhs.v;\n   \
     \ }\n\n    constexpr StaticModInt& operator+=(const StaticModInt& rhs) noexcept\
@@ -72,15 +72,15 @@ data:
     \       v = static_cast<unsigned>(\n            (static_cast<unsigned long long>(v)\
     \ * rhs.val()) % M);\n\n        return *this;\n    }\n\n    constexpr StaticModInt&\
     \ operator/=(const StaticModInt& rhs) noexcept {\n        assert(rhs.val() !=\
-    \ 0);\n\n        return *this *= rhs.inv();\n    }\n\n    constexpr friend StaticModInt\
+    \ 0);\n\n        return *this *= rhs.inv();\n    }\n\n    friend constexpr StaticModInt\
     \ operator+(const StaticModInt& lhs,\n                                       \
     \     const StaticModInt& rhs) noexcept {\n        return StaticModInt(lhs) +=\
-    \ rhs;\n    }\n\n    constexpr friend StaticModInt operator-(const StaticModInt&\
+    \ rhs;\n    }\n\n    friend constexpr StaticModInt operator-(const StaticModInt&\
     \ lhs,\n                                            const StaticModInt& rhs) noexcept\
-    \ {\n        return StaticModInt(lhs) -= rhs;\n    }\n\n    constexpr friend StaticModInt\
+    \ {\n        return StaticModInt(lhs) -= rhs;\n    }\n\n    friend constexpr StaticModInt\
     \ operator*(const StaticModInt& lhs,\n                                       \
     \     const StaticModInt& rhs) noexcept {\n        return StaticModInt(lhs) *=\
-    \ rhs;\n    }\n\n    constexpr friend StaticModInt operator/(const StaticModInt&\
+    \ rhs;\n    }\n\n    friend constexpr StaticModInt operator/(const StaticModInt&\
     \ lhs,\n                                            const StaticModInt& rhs) noexcept\
     \ {\n        return StaticModInt(lhs) /= rhs;\n    }\n\n    constexpr StaticModInt\
     \ pow(unsigned y) const noexcept {\n        StaticModInt res = raw(1);\n     \
@@ -118,7 +118,7 @@ data:
   isVerificationFile: true
   path: test/math/matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 11:39:25+09:00'
+  timestamp: '2024-12-08 11:42:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/matrix.test.cpp
