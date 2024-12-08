@@ -13,7 +13,8 @@ template <class T> T ExtendedGCD(T a, T b, T& x, T& y) {
     if (b == T(0)) {
         x = T(1);
         y = T(0);
-        return a;
+
+return a;
     }
 
     T res = ExtendedGCD(b, a % b, y, x);
