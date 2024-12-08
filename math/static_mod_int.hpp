@@ -12,26 +12,26 @@ template <unsigned M> class StaticModInt {
 
   public:
     constexpr StaticModInt() noexcept : v(0) {}
-    constexpr explicit StaticModInt(const unsigned long long _v) noexcept
+    explicit constexpr StaticModInt(const unsigned long long _v) noexcept
         : v(static_cast<unsigned>(_v % M)) {}
 
-    constexpr static StaticModInt raw(const unsigned _v) noexcept {
+    static constexpr StaticModInt raw(const unsigned _v) noexcept {
         StaticModInt res;
         res.v = _v;
 
         return res;
     }
 
-    constexpr static unsigned mod() noexcept { return M; }
+    static constexpr unsigned mod() noexcept { return M; }
 
     constexpr unsigned val() const noexcept { return v; }
 
-    constexpr friend bool operator==(const StaticModInt& lhs,
+    friend constexpr bool operator==(const StaticModInt& lhs,
                                      const StaticModInt& rhs) noexcept {
         return lhs.v == rhs.v;
     }
 
-    constexpr friend bool operator!=(const StaticModInt& lhs,
+    friend constexpr bool operator!=(const StaticModInt& lhs,
                                      const StaticModInt& rhs) noexcept {
         return lhs.v != rhs.v;
     }
@@ -67,22 +67,22 @@ template <unsigned M> class StaticModInt {
         return *this *= rhs.inv();
     }
 
-    constexpr friend StaticModInt operator+(const StaticModInt& lhs,
+    friend constexpr StaticModInt operator+(const StaticModInt& lhs,
                                             const StaticModInt& rhs) noexcept {
         return StaticModInt(lhs) += rhs;
     }
 
-    constexpr friend StaticModInt operator-(const StaticModInt& lhs,
+    friend constexpr StaticModInt operator-(const StaticModInt& lhs,
                                             const StaticModInt& rhs) noexcept {
         return StaticModInt(lhs) -= rhs;
     }
 
-    constexpr friend StaticModInt operator*(const StaticModInt& lhs,
+    friend constexpr StaticModInt operator*(const StaticModInt& lhs,
                                             const StaticModInt& rhs) noexcept {
         return StaticModInt(lhs) *= rhs;
     }
 
-    constexpr friend StaticModInt operator/(const StaticModInt& lhs,
+    friend constexpr StaticModInt operator/(const StaticModInt& lhs,
                                             const StaticModInt& rhs) noexcept {
         return StaticModInt(lhs) /= rhs;
     }
