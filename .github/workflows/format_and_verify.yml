@@ -1,4 +1,4 @@
-name: Fomart and Verify
+name: Fomart and verify
 
 on:
   push:
@@ -43,6 +43,10 @@ jobs:
         path: main
         fetch-depth: 0
 
+    - name: Fetch all history for latest commit
+      working-directory: main
+      run: git fetch --prune --unshallow
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -51,7 +55,7 @@ jobs:
     - name: Install oj-verify
       run: pip3 install -U online-judge-verify-helper
       
-    - name: Clone AC-Library
+    - name: Clone ac-library
       uses: actions/checkout@v3
       with:
         repository: atcoder/ac-library
