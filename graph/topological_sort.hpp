@@ -4,7 +4,7 @@
 #include <queue>
 #include <vector>
 
-namespace Ku {
+namespace ku {
 /**
  * @brief Topological Sort (トポロジカルソート)
  */
@@ -17,15 +17,15 @@ class TopologicalSort {
     std::vector<int> p;
 
   public:
-    TopologicalSort() : TopologicalSort(0) {}
-    explicit TopologicalSort(const size_t _n)
+    TopologicalSort() noexcept : TopologicalSort(0) {}
+    explicit TopologicalSort(const size_t _n) noexcept
         : init(false), dag(false), n(_n), g(_n), p() {}
-    explicit TopologicalSort(const std::vector<std::vector<int>>& _g)
+    explicit TopologicalSort(const std::vector<std::vector<int>>& _g) noexcept
         : init(false), dag(false), n(_g.size()), g(_g), p() {
         build();
     }
 
-    void add_edge(const int u, const int v) {
+    void add_edge(const int u, const int v) noexcept {
         assert(!init);
         assert(0 <= u);
         assert(u < static_cast<int>(n));
@@ -35,7 +35,7 @@ class TopologicalSort {
         g[u].push_back(v);
     }
 
-    void build() {
+    void build() noexcept {
         assert(!init);
         init = true;
 
@@ -74,13 +74,13 @@ class TopologicalSort {
         return;
     }
 
-    bool is_dag() const {
+    bool is_dag() const noexcept {
         assert(init);
 
         return dag;
     }
 
-    int get(const size_t i) const {
+    int get(const size_t i) const noexcept {
         assert(init);
         assert(dag);
         assert(i < n);
@@ -88,4 +88,4 @@ class TopologicalSort {
         return p[i];
     }
 };
-};  // namespace Ku
+};  // namespace ku

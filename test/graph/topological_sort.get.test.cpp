@@ -1,19 +1,19 @@
 #define PROBLEM "https://yukicoder.me/problems/no/468"
 
+#include "../../graph/topological_sort.hpp"
+
 #include <algorithm>
 #include <iostream>
 #include <utility>
 #include <vector>
-
-#include "../../graph/topological_sort.hpp"
 
 int main() {
     int N, M;
     std::cin >> N >> M;
 
     std::vector<std::vector<std::pair<int, int>>> g(N);
-    Ku::TopologicalSort ts(N);
-    Ku::TopologicalSort ts_inv(N);
+    ku::TopologicalSort ts(N);
+    ku::TopologicalSort ts_inv(N);
 
     for (int i = 0; i < M; i++) {
         int u, v, w;

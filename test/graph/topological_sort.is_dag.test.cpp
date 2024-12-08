@@ -1,15 +1,15 @@
 #define PROBLEM \
     "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_4_A"
 
-#include <iostream>
-
 #include "../../graph/topological_sort.hpp"
+
+#include <iostream>
 
 int main() {
     int N, M;
     std::cin >> N >> M;
 
-    Ku::TopologicalSort ts(N);
+    ku::TopologicalSort ts(N);
     for (int i = 0; i < M; i++) {
         int u, v;
         std::cin >> u >> v;
