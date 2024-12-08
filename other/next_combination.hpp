@@ -3,12 +3,12 @@
 #include <algorithm>
 #include <iterator>
 
-namespace Ku {
+namespace ku {
 /**
  * @brief Next Combination
  */
 template <class I>
-bool NextCombination(const I& begin, const I& end, const int k) {
+bool NextCombination(const I& begin, const I& end, const size_t k) {
     const I sub = std::next(begin, k);
 
     if (begin == end || begin == sub || end == sub) {
@@ -37,4 +37,4 @@ bool NextCombination(const I& begin, const I& end, const int k) {
 
     return false;
 }
-};  // namespace Ku
+};  // namespace ku

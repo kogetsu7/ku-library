@@ -1,13 +1,13 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2561"
 
+#include "../../other/next_combination.hpp"
+
 #include <iostream>
 #include <numeric>
 #include <vector>
 
-#include "../../other/next_combination.hpp"
-
 int main() {
-    int N, K;
+int N, K;
     std::cin >> N >> K;
     std::vector<long long> A(N);
     for (int i = 0; i < N; i++) {
@@ -28,7 +28,7 @@ int main() {
         if (s2 <= s1) {
             ans = (ans + 1) % 998;
         }
-    } while (Ku::NextCombination(id.begin(), id.end(), K));
+    } while (ku::NextCombination(id.begin(), id.end(), K));
 
     std::cout << ans << "\n";
 
