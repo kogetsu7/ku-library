@@ -15,6 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
+        path: main
         fetch-depth: 0
 
     - name: Install clang-format
@@ -23,12 +24,14 @@ jobs:
         sudo apt-get install clang-format
 
     - name: Format with clang-format
+      working-directory: main
       run: find . -type f \( -name "*.cpp" -o -name "*.hpp" \) | xargs clang-format -i
 
     - uses: stefanzweifel/git-auto-commit-action@v5
       with:
+        repository: main 
         commit_message: "style: format"
-        
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
