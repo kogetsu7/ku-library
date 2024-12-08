@@ -7,7 +7,7 @@
 #include <vector>
 
 int main() {
-int N, K;
+    int N, K;
     std::cin >> N >> K;
     std::vector<long long> A(N);
     for (int i = 0; i < N; i++) {
