@@ -45,6 +45,10 @@ jobs:
       with:
         path: main
         fetch-depth: 0
+
+    - name: Pull format
+      working-directory: main
+      run: git pull origin master
         
     - name: Set up Python
       uses: actions/setup-python@v4
