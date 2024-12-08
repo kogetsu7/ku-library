@@ -85,7 +85,7 @@ data:
   isVerificationFile: false
   path: tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2024-09-11 11:30:15+09:00'
+  timestamp: '2024-12-08 15:33:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/lca.test.cpp

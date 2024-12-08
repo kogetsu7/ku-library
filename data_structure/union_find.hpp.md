@@ -57,7 +57,7 @@ data:
   isVerificationFile: false
   path: data_structure/union_find.hpp
   requiredBy: []
-  timestamp: '2024-09-21 23:31:38+09:00'
+  timestamp: '2024-12-08 15:33:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/unionfind.test.cpp

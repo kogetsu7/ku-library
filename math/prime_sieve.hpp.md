@@ -77,7 +77,7 @@ data:
   isVerificationFile: false
   path: math/prime_sieve.hpp
   requiredBy: []
-  timestamp: '2024-12-08 12:23:13+09:00'
+  timestamp: '2024-12-08 15:33:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/prime_sieve.test.cpp

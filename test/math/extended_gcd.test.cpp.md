@@ -38,7 +38,7 @@ data:
   isVerificationFile: true
   path: test/math/extended_gcd.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 12:23:13+09:00'
+  timestamp: '2024-12-08 15:33:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/extended_gcd.test.cpp

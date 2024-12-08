@@ -62,7 +62,7 @@ data:
   isVerificationFile: false
   path: data_structure/rollback_union_find.hpp
   requiredBy: []
-  timestamp: '2024-09-11 11:30:15+09:00'
+  timestamp: '2024-12-08 15:33:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/persistent_unionfind.test.cpp

@@ -59,7 +59,7 @@ data:
   isVerificationFile: true
   path: test/graph/topological_sort.is_dag.test.cpp
   requiredBy: []
-  timestamp: '2024-12-01 15:49:53+09:00'
+  timestamp: '2024-12-08 15:33:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/topological_sort.is_dag.test.cpp

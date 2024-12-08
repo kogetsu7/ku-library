@@ -15,8 +15,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
   bundledCode: "#line 1 \"test/math/binomial.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
-    \n\n#include <algorithm>\n#include <iostream>\n\n#include <atcoder/modint>\n\n\
-    #line 2 \"math/binomial.hpp\"\n\n#include <array>\n#include <cassert>\n#include\
+    \n\n#line 2 \"math/binomial.hpp\"\n\n#include <array>\n#include <cassert>\n#include\
     \ <type_traits>\n#include <vector>\n\nnamespace ku {\n/**\n * @brief Binomial\
     \ (\u4E8C\u9805\u4FC2\u6570)\n */\ntemplate <class T> class Binomial {\n    static_assert(!std::is_floating_point_v<T>,\
     \ \"T must not be floating point\");\n\n  private:\n    size_t n;\n    std::vector<T>\
@@ -36,15 +35,16 @@ data:
     \u305B\n    T h(const int a, const int b) const noexcept {\n        if (a == 0\
     \ && b == 0) {\n            return T(1);\n        }\n\n        if (a <= 0 || b\
     \ < 0) {\n            return T(0);\n        }\n\n        return c(a + b - 1, b);\n\
-    \    }\n};\n}  // namespace ku\n#line 9 \"test/math/binomial.test.cpp\"\n\nint\
-    \ main() {\n    int T, M;\n    std::cin >> T >> M;\n\n    atcoder::modint::set_mod(M);\n\
+    \    }\n};\n}  // namespace ku\n#line 4 \"test/math/binomial.test.cpp\"\n\n#include\
+    \ <algorithm>\n#include <iostream>\n\n#include <atcoder/modint>\n\nint main()\
+    \ {\n    int T, M;\n    std::cin >> T >> M;\n\n    atcoder::modint::set_mod(M);\n\
     \n    ku::Binomial<atcoder::modint> bin(std::min(M - 1, 10000000));\n\n    while\
     \ (T--) {\n        int n, k;\n        std::cin >> n >> k;\n\n        std::cout\
     \ << bin.c(n, k).val() << \"\\n\";\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
-    \n\n#include <algorithm>\n#include <iostream>\n\n#include <atcoder/modint>\n\n\
-    #include \"../../math/binomial.hpp\"\n\nint main() {\n    int T, M;\n    std::cin\
-    \ >> T >> M;\n\n    atcoder::modint::set_mod(M);\n\n    ku::Binomial<atcoder::modint>\
+    \n\n#include \"../../math/binomial.hpp\"\n\n#include <algorithm>\n#include <iostream>\n\
+    \n#include <atcoder/modint>\n\nint main() {\n    int T, M;\n    std::cin >> T\
+    \ >> M;\n\n    atcoder::modint::set_mod(M);\n\n    ku::Binomial<atcoder::modint>\
     \ bin(std::min(M - 1, 10000000));\n\n    while (T--) {\n        int n, k;\n  \
     \      std::cin >> n >> k;\n\n        std::cout << bin.c(n, k).val() << \"\\n\"\
     ;\n    }\n\n    return 0;\n}\n"
@@ -53,7 +53,7 @@ data:
   isVerificationFile: true
   path: test/math/binomial.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 11:54:51+09:00'
+  timestamp: '2024-12-08 06:34:06+00:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/binomial.test.cpp
