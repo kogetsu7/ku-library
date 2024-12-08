@@ -27,6 +27,10 @@ jobs:
     - name: Format with Clang-Format
       working-directory: main
       run: find . -type f \( -name "*.cpp" -o -name "*.hpp" \) -exec clang-format -i {} +
+
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "style: format"
         
   verify:
     needs: [format]
