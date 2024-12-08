@@ -6,7 +6,31 @@ on:
       - master
 
 jobs:
+  format:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        path: main
+        fetch-depth: 0
+
+    - name: Install Clang-Format
+      working-directory: main
+      run: |
+        sudo apt-get update
+        sudo apt-get install clang-format
+
+    - name: Format with Clang-Format
+      working-directory: main
+      run: find . -type f \( -name "*.cpp" -o -name "*.hpp" \) -exec clang-format -i {} +
+        
   verify:
+    needs: [format]
+    
     runs-on: ubuntu-latest
 
     permissions:
@@ -32,7 +56,7 @@ jobs:
         repository: atcoder/ac-library
         path: ac-library
         sparse-checkout: atcoder
-        
+
     - name: Run tests
       working-directory: main
       env:
