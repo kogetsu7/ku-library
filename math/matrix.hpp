@@ -4,7 +4,7 @@
 #include <cassert>
 #include <vector>
 
-namespace Ku {
+namespace ku {
 /**
  * @brief Matrix (行列)
  */
@@ -15,36 +15,21 @@ template <class T> class Matrix {
     std::vector<std::vector<T>> d;
 
   public:
-    Matrix() : Matrix(0) {}
-    explicit Matrix(const size_t _h) : Matrix(_h, _h) {}
-    explicit Matrix(const size_t _h, const size_t _w)
-        : h(_h), w(_w), d(_h, std::vector<T>(_w, T(0))) {}
-    explicit Matrix(const std::vector<std::vector<T>>& _d)
+    Matrix() noexcept : Matrix(0) {}
+    explicit Matrix(const size_t _h) noexcept : Matrix(_h, _h) {}
+    explicit Matrix(const size_t _h, const size_t _w) noexcept
+        : Matrix(std::vector<std::vector<T>>(_h, std::vector<T>(_w))) {}
+    explicit Matrix(const std::vector<std::vector<T>>& _d) noexcept
         : h(_d.size()), w(_d.empty() ? 0 : _d[0].size()), d(_d) {
         assert(std::all_of(
             d.begin(), d.end(),
             [&](const std::vector<T>& r) -> bool { return r.size() == w; }));
     }
 
-    size_t height() const { return h; }
-    size_t width() const { return w; }
+    //! 単位行列
+    static Matrix identity(const size_t s) noexcept {
+        Matrix res(s);
 
-    T get(const size_t i, const size_t j) const {
-        assert(i < h);
-        assert(j < w);
-
-        return d[i][j];
-    }
-
-    T set(const size_t i, const size_t j, const T& v) {
-        assert(i < h);
-        assert(j < w);
-
-        return d[i][j] = v;
-    }
-
-    static Matrix identity(const size_t s) {
-        Matrix res{s};
         for (size_t i = 0; i < s; i++) {
             res.set(i, i, T(1));
         }
@@ -52,11 +37,32 @@ template <class T> class Matrix {
         return res;
     }
 
-    friend bool operator==(const Matrix& lhs, const Matrix& rhs) {
+    size_t height() const noexcept { return h; }
+    size_t width() const noexcept { return w; }
+
+    T get(const size_t i, const size_t j) const noexcept {
+        assert(i < h);
+        assert(j < w);
+
+        return d[i][j];
+    }
+
+    T set(const size_t i, const size_t j, const T& v) noexcept {
+        assert(i < h);
+        assert(j < w);
+
+        return d[i][j] = v;
+    }
+
+    friend bool operator==(const Matrix& lhs, const Matrix& rhs) noexcept {
         return lhs.d == rhs.d;
     }
 
-    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {
+    friend bool operator!=(const Matrix& lhs, const Matrix& rhs) noexcept {
+        return lhs.d != rhs.d;
+    }
+
+    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) noexcept {
         assert(lhs.width() == rhs.height());
 
         Matrix res(lhs.height(), rhs.width());
@@ -72,17 +78,19 @@ template <class T> class Matrix {
         return res;
     }
 
-    Matrix& operator*=(const Matrix& rhs) {
+    Matrix& operator*=(const Matrix& rhs) noexcept {
         assert(height() == width());
         assert(rhs.height() == rhs.width());
 
         return *this = *this * rhs;
     }
 
-    Matrix pow(unsigned long long y) const {
+    Matrix pow(unsigned long long y) const noexcept {
         assert(height() == width());
 
-        Matrix res{identity(height())}, x{*this};
+        Matrix res = identity(height());
+        Matrix x = *this;
+
         while (0 < y) {
             if (y & 1U) {
                 res *= x;
@@ -95,4 +103,4 @@ template <class T> class Matrix {
         return res;
     }
 };
-};  // namespace Ku
+};  // namespace ku

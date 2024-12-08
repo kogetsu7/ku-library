@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Ku {
+namespace ku {
 /**
  * @brief Static Mod Int
  */
@@ -105,4 +105,4 @@ template <unsigned M> class StaticModInt {
 
     constexpr StaticModInt inv() const noexcept { return pow(M - 2); }
 };
-};  // namespace Ku
+};  // namespace ku

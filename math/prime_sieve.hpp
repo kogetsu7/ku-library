@@ -1,11 +1,12 @@
 #pragma once
 
+#include <algorithm>
 #include <array>
 #include <cassert>
 #include <utility>
 #include <vector>
 
-namespace Ku {
+namespace ku {
 /**
  * @brief Prime Sieve (エラトステネスの篩)
  */
@@ -15,8 +16,8 @@ class PrimeSieve {
     std::vector<unsigned> p;
 
   public:
-    PrimeSieve() : PrimeSieve(0) {}
-    PrimeSieve(const size_t _n) : d(_n + 1), p() {
+    PrimeSieve() noexcept : PrimeSieve(0) {}
+    PrimeSieve(const size_t _n) noexcept : d(_n + 1), p() {
         for (unsigned i = 2; i <= static_cast<unsigned>(_n); i++) {
             if (d[i] != 0) {
                 continue;
@@ -36,26 +37,27 @@ class PrimeSieve {
         }
     }
 
-    bool is_prime(const unsigned n) const {
-        assert(n < static_cast<unsigned>(d.size()));
+    bool is_prime(const size_t n) const noexcept {
+        assert(n < d.size());
 
         return (n < 2) ? false : (d[n] == n);
     }
 
-    unsigned get_prime(const size_t i) const {
+    unsigned get_prime(const size_t i) const noexcept {
         assert(i < p.size());
 
         return p[i];
     }
 
-    std::vector<std::pair<unsigned, unsigned>> prime_factors(unsigned n) const {
-        assert(n < static_cast<unsigned>(d.size()));
+    std::vector<std::pair<unsigned, unsigned>> prime_factors(
+        size_t n) const noexcept {
+        assert(n < d.size());
 
         std::vector<std::pair<unsigned, unsigned>> res;
 
         while (2 <= n) {
             if (res.empty() || res.back().first != d[n]) {
-                res.emplace_back(d[n], 1U);
+                res.emplace_back(static_cast<unsigned>(d[n]), 1U);
             } else {
                 res.back().second++;
             }
@@ -66,11 +68,11 @@ class PrimeSieve {
         return res;
     }
 
-    std::vector<unsigned> divisors(const unsigned n) const {
-        assert(n < static_cast<unsigned>(d.size()));
+    std::vector<unsigned> divisors(const size_t n) const noexcept {
+        assert(n < d.size());
 
         std::vector<unsigned> res;
-        res.push_back(1);
+        res.emplace_back(1U);
 
         const auto pf = prime_factors(n);
 
@@ -78,11 +80,11 @@ class PrimeSieve {
             const size_t s = res.size();
 
             for (size_t i = 0; i < s; i++) {
-                unsigned m{1};
+                unsigned m = 1U;
 
                 for (unsigned j = 0; j < te.second; j++) {
                     m *= te.first;
-                    res.push_back(res[i] * m);
+                    res.emplace_back(res[i] * m);
                 }
             }
         }
@@ -92,4 +94,4 @@ class PrimeSieve {
         return res;
     }
 };
-};  // namespace Ku
+};  // namespace ku

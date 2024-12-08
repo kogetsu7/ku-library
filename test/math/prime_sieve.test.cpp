@@ -1,14 +1,14 @@
 #define PROBLEM "https://yukicoder.me/problems/no/106"
 
-#include <iostream>
-
 #include "../../math/prime_sieve.hpp"
+
+#include <iostream>
 
 int main() {
     int N, K;
     std::cin >> N >> K;
 
-    const Ku::PrimeSieve ps(N);
+    ku::PrimeSieve ps(N);
 
     int ans = 0;
     for (int i = 2; i <= N; i++) {

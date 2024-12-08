@@ -1,13 +1,17 @@
 #pragma once
 
-namespace Ku {
+#include <type_traits>
+
+namespace ku {
 /**
  * @brief Extended Euclidean Algorithm (拡張ユークリッドの互除法)
  */
 template <class T> T ExtendedGCD(T a, T b, T& x, T& y) {
-    if (b == 0) {
-        x = 1;
-        y = 0;
+    static_assert(!std::is_floating_point_v<T>, "T must not be floating point");
+
+    if (b == T(0)) {
+        x = T(1);
+        y = T(0);
         return a;
     }
 
@@ -16,4 +20,4 @@ template <class T> T ExtendedGCD(T a, T b, T& x, T& y) {
 
     return res;
 }
-};  // namespace Ku
+};  // namespace ku
