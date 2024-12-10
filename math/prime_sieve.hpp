@@ -43,11 +43,7 @@ class PrimeSieve {
         return (n < 2) ? false : (d[n] == n);
     }
 
-    unsigned get_prime(const size_t i) const noexcept {
-        assert(i < p.size());
-
-        return p[i];
-    }
+    const std::vector<unsigned>& get_primes() const noexcept { return p; }
 
     std::vector<std::pair<unsigned, unsigned>> prime_factors(
         size_t n) const noexcept {
