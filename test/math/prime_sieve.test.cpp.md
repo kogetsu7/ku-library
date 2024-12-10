@@ -28,25 +28,24 @@ data:
     \ (d[j] != 0) {\n                    continue;\n                }\n\n        \
     \        d[j] = i;\n            }\n        }\n    }\n\n    bool is_prime(const\
     \ size_t n) const noexcept {\n        assert(n < d.size());\n\n        return\
-    \ (n < 2) ? false : (d[n] == n);\n    }\n\n    unsigned get_prime(const size_t\
-    \ i) const noexcept {\n        assert(i < p.size());\n\n        return p[i];\n\
-    \    }\n\n    std::vector<std::pair<unsigned, unsigned>> prime_factors(\n    \
-    \    size_t n) const noexcept {\n        assert(n < d.size());\n\n        std::vector<std::pair<unsigned,\
-    \ unsigned>> res;\n\n        while (2 <= n) {\n            if (res.empty() ||\
-    \ res.back().first != d[n]) {\n                res.emplace_back(static_cast<unsigned>(d[n]),\
-    \ 1U);\n            } else {\n                res.back().second++;\n         \
-    \   }\n\n            n /= d[n];\n        }\n\n        return res;\n    }\n\n \
-    \   std::vector<unsigned> divisors(const size_t n) const noexcept {\n        assert(n\
-    \ < d.size());\n\n        std::vector<unsigned> res;\n        res.emplace_back(1U);\n\
-    \n        const auto pf = prime_factors(n);\n\n        for (const auto& te : pf)\
-    \ {\n            const size_t s = res.size();\n\n            for (size_t i = 0;\
-    \ i < s; i++) {\n                unsigned m = 1U;\n\n                for (unsigned\
-    \ j = 0; j < te.second; j++) {\n                    m *= te.first;\n         \
-    \           res.emplace_back(res[i] * m);\n                }\n            }\n\
-    \        }\n\n        std::sort(res.begin(), res.end());\n\n        return res;\n\
-    \    }\n};\n};  // namespace ku\n#line 4 \"test/math/prime_sieve.test.cpp\"\n\n\
-    #include <iostream>\n\nint main() {\n    int N, K;\n    std::cin >> N >> K;\n\n\
-    \    ku::PrimeSieve ps(N);\n\n    int ans = 0;\n    for (int i = 2; i <= N; i++)\
+    \ (n < 2) ? false : (d[n] == n);\n    }\n\n    const std::vector<unsigned>& get_primes()\
+    \ const noexcept { return p; }\n\n    std::vector<std::pair<unsigned, unsigned>>\
+    \ prime_factors(\n        size_t n) const noexcept {\n        assert(n < d.size());\n\
+    \n        std::vector<std::pair<unsigned, unsigned>> res;\n\n        while (2\
+    \ <= n) {\n            if (res.empty() || res.back().first != d[n]) {\n      \
+    \          res.emplace_back(static_cast<unsigned>(d[n]), 1U);\n            } else\
+    \ {\n                res.back().second++;\n            }\n\n            n /= d[n];\n\
+    \        }\n\n        return res;\n    }\n\n    std::vector<unsigned> divisors(const\
+    \ size_t n) const noexcept {\n        assert(n < d.size());\n\n        std::vector<unsigned>\
+    \ res;\n        res.emplace_back(1U);\n\n        const auto pf = prime_factors(n);\n\
+    \n        for (const auto& te : pf) {\n            const size_t s = res.size();\n\
+    \n            for (size_t i = 0; i < s; i++) {\n                unsigned m = 1U;\n\
+    \n                for (unsigned j = 0; j < te.second; j++) {\n               \
+    \     m *= te.first;\n                    res.emplace_back(res[i] * m);\n    \
+    \            }\n            }\n        }\n\n        std::sort(res.begin(), res.end());\n\
+    \n        return res;\n    }\n};\n};  // namespace ku\n#line 4 \"test/math/prime_sieve.test.cpp\"\
+    \n\n#include <iostream>\n\nint main() {\n    int N, K;\n    std::cin >> N >> K;\n\
+    \n    ku::PrimeSieve ps(N);\n\n    int ans = 0;\n    for (int i = 2; i <= N; i++)\
     \ {\n        auto pf = ps.prime_factors(i);\n\n        if (K <= static_cast<int>(pf.size()))\
     \ {\n            ans++;\n        }\n    }\n\n    std::cout << ans << \"\\n\";\n\
     \n    return 0;\n}\n"
@@ -61,7 +60,7 @@ data:
   isVerificationFile: true
   path: test/math/prime_sieve.test.cpp
   requiredBy: []
-  timestamp: '2024-12-08 12:23:13+09:00'
+  timestamp: '2024-12-10 13:16:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/prime_sieve.test.cpp
